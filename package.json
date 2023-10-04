@@ -11,17 +11,16 @@
   "author": "DataVerseKE",
   "license": "ISC",
   "dependencies": {
-    "@prisma/client": "^5.3.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "morgan": "^1.10.0",
-    "nodemon": "^3.0.1",
     "ts-node": "^10.9.1"
   },
   "devDependencies": {
+    "nodemon": "^3.0.1",
     "@types/cors": "^2.8.14",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.18",
@@ -29,7 +28,6 @@
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
     "eslint": "^8.50.0",
-    "prisma": "^5.3.1",
     "typescript": "^5.2.2"
   }
 }
