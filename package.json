@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/app.js",
+  "prisma": {
+    "seed": "node --require esbuild-register prisma/seed.ts"
+  },
   "scripts": {
     "start": "tsc && node dist/app.js",
     "lint": "eslint . --ext .ts",
@@ -27,6 +30,7 @@
     "@types/node": "^20.8.2",
     "@typescript-eslint/eslint-plugin": "^6.7.4",
     "@typescript-eslint/parser": "^6.7.4",
+    "esbuild-register": "^3.5.0",
     "eslint": "^8.50.0",
     "nodemon": "^3.0.1",
     "prisma": "^5.4.1",
