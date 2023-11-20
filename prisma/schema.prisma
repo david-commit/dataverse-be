@@ -6,11 +6,12 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
+  // provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Admin {
   id        Int      @id @default(autoincrement())
   name      String
   email     String   @unique
@@ -18,4 +19,25 @@ model User {
   phone     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Job {
+  id              Int      @id @default(autoincrement())
+  job_title       String
+  job_description String
+  job_details     String
+  postedBy        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Blog {
+  id               Int      @id @default(autoincrement())
+  blog_title       String
+  blog_description String
+  blog_image       String
+  blog_details     String
+  postedBy         String
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
 }
