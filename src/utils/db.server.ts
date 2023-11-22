@@ -10,9 +10,9 @@ declare global {
 }
 
 if (!global.__db) {
-  global.db = new PrismaClient()
+  global.__db = new PrismaClient();
 }
 
-db = global.__id;
+db = global.__db;
 
 export { db };

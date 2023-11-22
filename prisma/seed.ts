@@ -51,7 +51,7 @@ const seed = async () => {
       });
     })
   );
-  console.log('Admin data successfully seeded!');
+  console.log('🌱 Admin data successfully seeded!');
   
   //======== > Seed Jobs
   await Promise.all(
@@ -66,7 +66,7 @@ const seed = async () => {
       });
     })
   );
-  console.log('Job data successfully seeded!');
+  console.log('🌱 Job data successfully seeded!');
   
   //======== > Seed Blogs
   await Promise.all(
@@ -82,7 +82,7 @@ const seed = async () => {
       });
     })
   );
-  console.log('Blog data successfully seeded!');
+  console.log('🌱 Blog data successfully seeded!');
 
   // ======== > Seed Contact Entries
   await Promise.all(
@@ -98,7 +98,7 @@ const seed = async () => {
       });
     })
   );
-  console.log('Contact form data successfully seeded!');
+  console.log('🌱 Contact form data successfully seeded!');
 };
 
 seed();
