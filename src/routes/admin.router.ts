@@ -8,30 +8,30 @@ const router = express.Router();
 //        IMPORT: admin db services
 // =================================================================
 import {
-  getAllAdminsService,
-  getAdminService,
-  createAdminService,
-  updateAdminService,
-} from '../services/admin.services';
+  getAllAdmins,
+  getAdmin,
+  createAdmin,
+  updateAdmin,
+} from '../controllers/adminController';
 
 // =================================================================
 //        GET: All Admins
 // =================================================================
-router.get('/get-admins', getAllAdminsService);
+router.get('/get-admins', getAllAdmins);
 
 // =================================================================
 //        GET: Single Admin
 // =================================================================
-router.get('/get-admin', getAdminService);
+router.get('/get-admin/:adminID', getAdmin);
 
 // =================================================================
 //        POST: New Admin
 // =================================================================
-router.post('/create-admin', createAdminService);
+router.post('/create-admin', createAdmin);
 
 // =================================================================
 //        UPDATE: Existing Admin
 // =================================================================
-router.put('/create-admin', updateAdminService);
+router.put('/create-admin', updateAdmin);
 
 module.exports = router;

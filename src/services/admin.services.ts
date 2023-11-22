@@ -4,9 +4,11 @@ import { db } from '../utils/db.server';
 //        GET: All Admins
 // =================================================================
 export const getAllAdminsService = async () => {
-  await db.admin.findMany({
+  return await db.admin.findMany({
     select: {
       id: true,
+      email: true,
+      phone: true,
     },
   });
 };
@@ -15,9 +17,14 @@ export const getAllAdminsService = async () => {
 //        GET: Single Admin
 // =================================================================
 export const getAdminService = async (adminID: number) => {
-  await db.admin.findUnique({
+  return await db.admin.findUnique({
     where: {
       id: adminID,
+    },
+    select: {
+      id: true,
+      email: true,
+      phone: true,
     },
   });
 };
@@ -35,7 +42,7 @@ type AdminNewProfileType = {
 export const createAdminService = async (profile: AdminNewProfileType) => {
   const { name, email, password, phone } = profile;
 
-  await db.admin.create({
+  return await db.admin.create({
     data: {
       name,
       email,
@@ -58,7 +65,7 @@ type AdminUpdateProfileType = {
 export const updateAdminService = async (profile: AdminUpdateProfileType) => {
   const { name, email, password, phone } = profile;
 
-  await db.admin.update({
+  return await db.admin.update({
     where: {
       email,
     },
