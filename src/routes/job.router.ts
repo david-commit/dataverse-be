@@ -5,7 +5,7 @@ import express from 'express';
 const router = express.Router();
 
 // =================================================================
-//        IMPORT: jobs db services
+//        IMPORT: Job db services
 // =================================================================
 import {
   getAllJobs,

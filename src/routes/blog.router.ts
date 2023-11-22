@@ -5,33 +5,33 @@ import express from 'express';
 const router = express.Router();
 
 // =================================================================
-//        IMPORT: Admin db services
+//        IMPORT: Blog db services
 // =================================================================
 import {
-  getAllAdmins,
-  getAdmin,
-  createAdmin,
-  updateAdmin,
-} from '../controllers/adminController';
+  getAllBlogs,
+  getBlog,
+  createBlog,
+  updateBlog,
+} from '../controllers/blogController';
 
 // =================================================================
-//        GET: All Admins
+//        GET: All Blogs
 // =================================================================
-router.get('/get-admins', getAllAdmins);
+router.get('/get-blogs', getAllBlogs);
 
 // =================================================================
-//        GET: Single Admin
+//        GET: Single Blogs
 // =================================================================
-router.get('/get-admin/:adminID', getAdmin);
+router.get('/get-blog/:blogID', getBlog);
 
 // =================================================================
-//        POST: New Admin
+//        POST: New Blogs
 // =================================================================
-router.post('/create-admin', createAdmin);
+router.post('/create-blog', createBlog);
 
 // =================================================================
-//        UPDATE: Existing Admin
+//        UPDATE: Existing Blog
 // =================================================================
-router.put('/create-admin', updateAdmin);
+router.put('/create-blog', updateBlog);
 
 module.exports = router;
