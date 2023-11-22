@@ -1,28 +1,28 @@
-// Import Libs
+// ======== > Import Libs
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
 
-// Configs
+// ======== > Configs
 const app = express();
 dotenv.config();
 
-// Check for variables
+// ======== > Check for variables
 const port = process.env.PORT
 if (!port) {
   console.log('Fix: Add env variables (check documentation)');
   process.exit(1);
 }
 
-// Middlewares
+// ======== > Middlewares
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
-// Routes
+// ======== > Routes
 app.get('/', (req, res) => {
   res.json({ success: true });
 });

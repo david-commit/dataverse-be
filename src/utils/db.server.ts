@@ -1,5 +1,9 @@
-// This checks if there is an existing database connection
-// presrent before creating a new connection
+// =================================================================
+// Instead of initializing PrismaClient on many points in the app
+// and having multiple connections to the database, we create a
+// checker to see if a PrismaClient already exists otherwise, will
+// create a new one
+// =================================================================
 
 import { PrismaClient } from '@prisma/client';
 
