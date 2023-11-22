@@ -1,5 +1,10 @@
 import { db } from '../src/utils/db.server';
-import { testAdminData, testCareerData, testBlogData } from './seedData';
+import {
+  testAdminData,
+  testCareerData,
+  testBlogData,
+  testContactFormData,
+} from './seedData';
 
 type AdminType = {
   name: string;
@@ -23,9 +28,17 @@ type BlogType = {
   postedBy: string;
 };
 
+type ContactType = {
+  name: string;
+  phone: string;
+  email: string;
+  subject: string;
+  message: string;
+};
+
 // ==== MAIN SEED FUNCTION ====
 const seed = async () => {
-  //==> Seed Admins
+  //======== > Seed Admins
   await Promise.all(
     testAdminData.map((admin: AdminType) => {
       return db.admin.create({
@@ -38,8 +51,9 @@ const seed = async () => {
       });
     })
   );
-
-  //==> Seed Jobs
+  console.log('Admin data successfully seeded!');
+  
+  //======== > Seed Jobs
   await Promise.all(
     testCareerData.map((job: JobType) => {
       return db.job.create({
@@ -52,8 +66,9 @@ const seed = async () => {
       });
     })
   );
-
-  //==> Seed Blogs
+  console.log('Job data successfully seeded!');
+  
+  //======== > Seed Blogs
   await Promise.all(
     testBlogData.map((blog: BlogType) => {
       return db.blog.create({
@@ -67,6 +82,23 @@ const seed = async () => {
       });
     })
   );
+  console.log('Blog data successfully seeded!');
+
+  // ======== > Seed Contact Entries
+  await Promise.all(
+    testContactFormData.map((entry: ContactType) => {
+      return db.contactEntry.create({
+        data: {
+          name: entry.name,
+          phone: entry.phone,
+          email: entry.email,
+          subject: entry.subject,
+          message: entry.message,
+        },
+      });
+    })
+  );
+  console.log('Contact form data successfully seeded!');
 };
 
 seed();

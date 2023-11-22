@@ -66,3 +66,34 @@ export const testBlogData = [
     postedBy: 'Faith',
   },
 ];
+
+export const testContactFormData = [
+  {
+    name: 'David O',
+    phone: '0714253678',
+    email: 'd@d.com',
+    subject: 'New Website',
+    message: 'The message!',
+  },
+  {
+    name: 'Lynette R',
+    phone: '0745678923',
+    email: 'l@l.com',
+    subject: 'Progress',
+    message: 'My message!',
+  },
+  {
+    name: 'Faith G',
+    phone: '0725361478',
+    email: 'f@f.com',
+    subject: 'New Inquiry',
+    message: 'New Message.',
+  },
+  {
+    name: 'Venessa O',
+    phone: '0723568974',
+    email: 'v@v.com',
+    subject: 'Help',
+    message: 'Presentation!',
+  },
+];
