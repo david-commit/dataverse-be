@@ -7,6 +7,7 @@ import cors from 'cors';
 
 // ======== > Import Routes
 const adminRoutes = require('./src/routes/admin.router');
+const jobRoutes = require('./src/routes/job.router');
 
 // ======== > ConfigsService
 const app = express();
@@ -27,6 +28,7 @@ app.use(morgan('dev'));
 
 // ======== > Route Middlewares
 app.use('/api', adminRoutes)
+app.use('/api', jobRoutes);
 
 
 app.listen(port || 5055, () =>
