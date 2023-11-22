@@ -3,7 +3,7 @@ import { db } from '../utils/db.server';
 // =================================================================
 //        GET: All Admins
 // =================================================================
-export const getAllAdmins = async () => {
+export const getAllAdminsService = async () => {
   await db.admin.findMany({
     select: {
       id: true,
@@ -14,7 +14,7 @@ export const getAllAdmins = async () => {
 // =================================================================
 //        GET: Single Admin
 // =================================================================
-export const getAdmin = async (adminID: number) => {
+export const getAdminService = async (adminID: number) => {
   await db.admin.findUnique({
     where: {
       id: adminID,
@@ -32,7 +32,7 @@ type AdminNewProfileType = {
   phone: string;
 };
 
-export const createAdmin = async (profile: AdminNewProfileType) => {
+export const createAdminService = async (profile: AdminNewProfileType) => {
   const { name, email, password, phone } = profile;
 
   await db.admin.create({
@@ -55,7 +55,7 @@ type AdminUpdateProfileType = {
   phone: string;
 };
 
-export const updateAdmin = async (profile: AdminUpdateProfileType) => {
+export const updateAdminService = async (profile: AdminUpdateProfileType) => {
   const { name, email, password, phone } = profile;
 
   await db.admin.update({
