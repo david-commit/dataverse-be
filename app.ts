@@ -9,6 +9,7 @@ import cors from 'cors';
 const adminRoutes = require('./src/routes/admin.router');
 const jobRoutes = require('./src/routes/job.router');
 const blogRoutes = require('./src/routes/blog.router');
+const contactEntryRoutes = require('./src/routes/contactEntry.router');
 
 // ======== > ConfigsService
 const app = express();
@@ -31,7 +32,7 @@ app.use(morgan('dev'));
 app.use('/api', adminRoutes)
 app.use('/api', jobRoutes);
 app.use('/api', blogRoutes)
-
+app.use('/api', contactEntryRoutes);
 
 app.listen(port || 5055, () =>
   console.log(`Server running on http://localhost:${port}`)
