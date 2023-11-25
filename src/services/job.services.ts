@@ -9,6 +9,7 @@ export const getAllJobsService = async () => {
       id: true,
       job_title: true,
       job_description: true,
+      slug: true,
       postedBy: true,
       createdAt: true,
     },
@@ -28,6 +29,7 @@ export const getJobService = async (jobID: number) => {
       job_title: true,
       job_description: true,
       job_details: true,
+      slug: true,
       postedBy: true,
       createdAt: true,
       updatedAt: true,
@@ -42,17 +44,19 @@ type NewJobType = {
   job_title: string;
   job_description: string;
   job_details: string;
+  slug: string;
   postedBy: string;
 };
 
 export const createJobService = async (jobRole: NewJobType) => {
-  const { job_title, job_description, job_details, postedBy } = jobRole;
+  const { job_title, job_description, job_details, slug, postedBy } = jobRole;
 
   return await db.job.create({
     data: {
       job_title,
       job_description,
       job_details,
+      slug,
       postedBy,
     },
   });
@@ -66,11 +70,12 @@ type JobUpdateType = {
   job_title: string;
   job_description: string;
   job_details: string;
+  slug: string;
   postedBy: string;
 };
 
 export const updateJobService = async (jobRole: JobUpdateType) => {
-  const { id, job_title, job_description, job_details } = jobRole;
+  const { id, job_title, job_description, slug, job_details } = jobRole;
 
   return await db.job.update({
     where: {
@@ -79,6 +84,7 @@ export const updateJobService = async (jobRole: JobUpdateType) => {
     data: {
       job_title,
       job_description,
+      slug,
       job_details,
     },
   });

@@ -10,6 +10,7 @@ export const getAllBlogsService = async () => {
       blog_title: true,
       blog_description: true,
       blog_image: true,
+      slug: true,
       postedBy: true,
       createdAt: true,
     },
@@ -30,6 +31,7 @@ export const getBlogService = async (blogID: number) => {
       blog_description: true,
       blog_image: true,
       blog_details: true,
+      slug: true,
       postedBy: true,
       createdAt: true,
       updatedAt: true,
@@ -45,11 +47,12 @@ type NewBlogType = {
   blog_description: string;
   blog_image: string;
   blog_details: string;
+  slug: true,
   postedBy: string;
 };
 
 export const createBlogService = async (blogPost: NewBlogType) => {
-  const { blog_title, blog_description, blog_image, blog_details, postedBy } =
+  const { blog_title, blog_description, blog_image, blog_details, slug, postedBy } =
     blogPost;
 
   return await db.blog.create({
@@ -58,6 +61,7 @@ export const createBlogService = async (blogPost: NewBlogType) => {
       blog_description,
       blog_image,
       blog_details,
+      slug,
       postedBy,
     },
   });
@@ -72,11 +76,12 @@ type UpdateBlogType = {
   blog_description: string;
   blog_image: string;
   blog_details: string;
+  slug: string;
   postedBy: string;
 };
 
 export const updateBlogService = async (blogPost: UpdateBlogType) => {
-  const { id, blog_title, blog_description, blog_image, blog_details } =
+  const { id, blog_title, blog_description, blog_image, slug, blog_details } =
     blogPost;
 
   return await db.blog.update({
@@ -87,6 +92,7 @@ export const updateBlogService = async (blogPost: UpdateBlogType) => {
       blog_title,
       blog_description,
       blog_image,
+      slug,
       blog_details,
     },
   });

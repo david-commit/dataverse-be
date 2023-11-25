@@ -26,6 +26,7 @@ model Job {
   job_title       String
   job_description String
   job_details     String
+  slug            String   @unique
   postedBy        String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
@@ -37,6 +38,7 @@ model Blog {
   blog_description String
   blog_image       String
   blog_details     String
+  slug             String   @unique
   postedBy         String
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt

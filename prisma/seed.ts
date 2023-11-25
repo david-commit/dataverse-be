@@ -17,6 +17,7 @@ type JobType = {
   job_title: string;
   job_description: string;
   job_details: string;
+  slug: string;
   postedBy: string;
 };
 
@@ -25,6 +26,7 @@ type BlogType = {
   blog_description: string;
   blog_image: string;
   blog_details: string;
+  slug: string;
   postedBy: string;
 };
 
@@ -52,7 +54,7 @@ const seed = async () => {
     })
   );
   console.log('🌱 Admin data successfully seeded!');
-  
+
   //======== > Seed Jobs
   await Promise.all(
     testCareerData.map((job: JobType) => {
@@ -61,13 +63,14 @@ const seed = async () => {
           job_title: job.job_title,
           job_description: job.job_description,
           job_details: job.job_details,
+          slug: job.slug,
           postedBy: job.postedBy,
         },
       });
     })
   );
   console.log('🌱 Job data successfully seeded!');
-  
+
   //======== > Seed Blogs
   await Promise.all(
     testBlogData.map((blog: BlogType) => {
@@ -77,6 +80,7 @@ const seed = async () => {
           blog_description: blog.blog_description,
           blog_image: blog.blog_image,
           blog_details: blog.blog_details,
+          slug: blog.slug,
           postedBy: blog.postedBy,
         },
       });

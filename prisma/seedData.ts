@@ -24,18 +24,21 @@ export const testCareerData = [
     job_title: 'System Administrator',
     job_description: 'lorem ipsum dolor sit amet, consectetur adip',
     job_details: 'HTML code here',
+    slug: 'system-administaror',
     postedBy: 'David',
   },
   {
     job_title: 'Systems Analyst',
     job_description: 'lorem ipsum dolor sit amet, consectetur adip',
     job_details: 'HTML code here',
+    slug: 'system-analyst',
     postedBy: 'Lynette',
   },
   {
     job_title: 'Data Analyst',
     job_description: 'lorem ipsum dolor sit amet, consectetur adip',
     job_details: 'HTML code here',
+    slug: 'data-analyst',
     postedBy: 'Faith',
   },
 ];
@@ -47,6 +50,7 @@ export const testBlogData = [
     blog_image:
       'https://www.simplilearn.com/ice9/free_resources_article_thumb/What_is_Data_Types_of_Data_and_How_To_Analyze_Data.jpg',
     blog_details: 'HTML code goes here',
+    slug: 'how-to-clean-data',
     postedBy: 'David',
   },
   {
@@ -55,6 +59,7 @@ export const testBlogData = [
     blog_image:
       'https://www.simplilearn.com/ice9/free_resources_article_thumb/What_is_Data_Types_of_Data_and_How_To_Analyze_Data.jpg',
     blog_details: 'HTML code goes here',
+    slug: 'how-to-improve-data-collection',
     postedBy: 'Lynette',
   },
   {
@@ -63,6 +68,7 @@ export const testBlogData = [
     blog_image:
       'https://www.simplilearn.com/ice9/free_resources_article_thumb/What_is_Data_Types_of_Data_and_How_To_Analyze_Data.jpg',
     blog_details: 'HTML code goes here',
+    slug: 'how-to-analyze-data',
     postedBy: 'Faith',
   },
 ];
