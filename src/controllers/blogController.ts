@@ -27,7 +27,7 @@ export const getBlog = async (req: Request, res: Response) => {
   const blog = await getBlogService(parseInt(blogID));
 
   if (!blog) {
-    return res.status(400).json({ msg: 'Role does not exist' });
+    return res.status(404).json({ msg: 'Role does not exist' });
   }
 
   return res.status(200).json(blog);
