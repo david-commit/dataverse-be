@@ -47,7 +47,7 @@ type NewBlogType = {
   blog_description: string;
   blog_image: string;
   blog_details: string;
-  slug: true,
+  slug: string,
   postedBy: string;
 };
 

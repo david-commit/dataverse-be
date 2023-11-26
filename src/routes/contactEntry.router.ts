@@ -21,7 +21,7 @@ router.get('/get-contact-entries', getAllContactEntries);
 // =================================================================
 //        GET: Single Contact Entry
 // =================================================================
-router.get('/get-contact-entry/:contactEntryID', getContactEntry);
+router.get('/get-contact-entries/:contactEntryID', getContactEntry);
 
 // =================================================================
 //        POST: New Contact Entry

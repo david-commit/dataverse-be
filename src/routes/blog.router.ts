@@ -22,7 +22,7 @@ router.get('/get-blogs', getAllBlogs);
 // =================================================================
 //        GET: Single Blogs
 // =================================================================
-router.get('/get-blog/:blogID', getBlog);
+router.get('/get-blogs/:blogID', getBlog);
 
 // =================================================================
 //        POST: New Blogs

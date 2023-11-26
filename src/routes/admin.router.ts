@@ -22,7 +22,7 @@ router.get('/get-admins', getAllAdmins);
 // =================================================================
 //        GET: Single Admin
 // =================================================================
-router.get('/get-admin/:adminID', getAdmin);
+router.get('/get-admins/:adminID', getAdmin);
 
 // =================================================================
 //        POST: New Admin

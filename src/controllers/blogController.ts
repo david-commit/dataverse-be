@@ -10,7 +10,6 @@ import {
 //        GET: All Blogs
 // =================================================================
 export const getAllBlogs = async (req: Request, res: Response) => {
- 
   try {
     const blogs = await getAllBlogsService();
     return res.status(200).json(blogs);
@@ -25,12 +24,13 @@ export const getAllBlogs = async (req: Request, res: Response) => {
 export const getBlog = async (req: Request, res: Response) => {
   const { blogID } = req.params;
 
-  try {
-    const blog = await getBlogService(parseInt(blogID));
-    return res.status(200).json(blog);
-  } catch (error) {
-    return res.status(400).json(error.message);
+  const blog = await getBlogService(parseInt(blogID));
+
+  if (!blog) {
+    return res.status(400).json({ msg: 'Role does not exist' });
   }
+
+  return res.status(200).json(blog);
 };
 
 // =================================================================
