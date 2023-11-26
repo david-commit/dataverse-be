@@ -60,6 +60,7 @@ export const updateAdmin = async (req: Request, res: Response) => {
     return res.status(403).json({ msg: 'Forbidden action' });
   }
 
+  // Proceed updating since admin exists
   const admin = await updateAdminService(profile);
 
   if (!admin) {

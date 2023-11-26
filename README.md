@@ -6,3 +6,6 @@
 - `npx prisma generate`
 - `npm prisma db seed`
 
+TODO: 
+- Slugify
+- JWT
