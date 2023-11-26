@@ -9,12 +9,12 @@ import {
 //        GET: All Contact Entries
 // =================================================================
 export const getAllContactEntries = async (req: Request, res: Response) => {
-  try {
-    const contactEntry = await getAllContactEntriesService();
-    return res.status(200).json(contactEntry);
-  } catch (error) {
-    return res.status(404).json(error.message);
+  const contactEntry = await getAllContactEntriesService();
+
+  if (!contactEntry) {
+    return res.status(404).json({ msg: 'No contact entries found' });
   }
+  return res.status(200).json(contactEntry);
 };
 
 // =================================================================
@@ -23,12 +23,12 @@ export const getAllContactEntries = async (req: Request, res: Response) => {
 export const getContactEntry = async (req: Request, res: Response) => {
   const { contactEntryID } = req.params;
 
-  try {
-    const contactEntry = await getContactEntryService(parseInt(contactEntryID));
-    return res.status(200).json(contactEntry);
-  } catch (error) {
-    return res.status(400).json(error.message);
+  const contactEntry = await getContactEntryService(parseInt(contactEntryID));
+
+  if (!contactEntry) {
+    return res.status(400).json({ msg: 'Contact entry not found' });
   }
+  return res.status(200).json(contactEntry);
 };
 
 // =================================================================
@@ -37,11 +37,10 @@ export const getContactEntry = async (req: Request, res: Response) => {
 export const createContactEntry = async (req: Request, res: Response) => {
   const contactEntry = req.body;
 
-  try {
-    const entry = await createContactEntryService(contactEntry);
-    return res.status(200).json(entry);
-  } catch (error) {
-    return res.status(422).json(error.message);
+  const entry = await createContactEntryService(contactEntry);
+  
+  if (!entry) {
+    return res.status(422).json({ msg: 'Unprocessable entity' });
   }
+  return res.status(200).json(entry);
 };
-

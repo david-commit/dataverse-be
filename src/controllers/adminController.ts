@@ -27,7 +27,7 @@ export const getAdmin = async (req: Request, res: Response) => {
   const admin = await getAdminService(parseInt(adminID));
 
   if (!admin) {
-    return res.status(400).json({ msg: 'User not found' });
+    return res.status(404).json({ msg: 'User not found' });
   }
   return res.status(200).json(admin);
 };

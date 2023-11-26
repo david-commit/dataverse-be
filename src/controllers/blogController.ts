@@ -10,12 +10,12 @@ import {
 //        GET: All Blogs
 // =================================================================
 export const getAllBlogs = async (req: Request, res: Response) => {
-  try {
-    const blogs = await getAllBlogsService();
-    return res.status(200).json(blogs);
-  } catch (error) {
-    return res.status(404).json(error.message);
+  const blogs = await getAllBlogsService();
+
+  if (!blogs) {
+    return res.status(404).json({ msg: 'No blogs found' });
   }
+  return res.status(200).json(blogs);
 };
 
 // =================================================================
@@ -27,7 +27,7 @@ export const getBlog = async (req: Request, res: Response) => {
   const blog = await getBlogService(parseInt(blogID));
 
   if (!blog) {
-    return res.status(404).json({ msg: 'Role does not exist' });
+    return res.status(404).json({ msg: 'Blog does not exist' });
   }
 
   return res.status(200).json(blog);
@@ -39,12 +39,12 @@ export const getBlog = async (req: Request, res: Response) => {
 export const createBlog = async (req: Request, res: Response) => {
   const blogPost = req.body;
 
-  try {
-    const blog = await createBlogService(blogPost);
-    return res.status(200).json(blog);
-  } catch (error) {
-    return res.status(422).json(error.message);
+  const blog = await createBlogService(blogPost);
+
+  if (!blog) {
+    return res.status(422).json({ msg: 'Validation erors' });
   }
+  return res.status(200).json(blog);
 };
 
 // =================================================================
@@ -53,10 +53,10 @@ export const createBlog = async (req: Request, res: Response) => {
 export const updateBlog = async (req: Request, res: Response) => {
   const blogPost = req.body;
 
-  try {
-    const blog = await updateBlogService(blogPost);
-    return res.status(200).json(blog);
-  } catch (error) {
-    return res.status(422).json(error.message);
+  const blog = await updateBlogService(blogPost);
+
+  if (!blog) {
+    return res.status(422).json({ msg: 'Unprosessable entity' });
   }
+  return res.status(200).json(blog);
 };
