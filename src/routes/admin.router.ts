@@ -12,6 +12,7 @@ import {
   getAdmin,
   createAdmin,
   updateAdmin,
+  deleteAdmin,
 } from '../controllers/adminController';
 
 // =================================================================
@@ -33,5 +34,10 @@ router.post('/create-admin', createAdmin);
 //        UPDATE: Existing Admin
 // =================================================================
 router.put('/create-admin', updateAdmin);
+
+// =================================================================
+//        Delete: Existing Admin
+// =================================================================
+router.delete('/delete-admin', deleteAdmin);
 
 module.exports = router;

@@ -76,3 +76,20 @@ export const updateAdminService = async (profile: AdminUpdateProfileType) => {
     },
   });
 };
+
+// =================================================================
+//        DELETE: Existing Admin
+// =================================================================
+type AdminDeleteType = {
+  email: string;
+};
+
+export const deleteAdminService = async (profile: AdminDeleteType) => {
+  const { email } = profile;
+
+  return await db.admin.delete({
+    where: {
+      email,
+    },
+  });
+};

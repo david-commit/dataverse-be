@@ -4,6 +4,7 @@ import {
   getAdminService,
   createAdminService,
   updateAdminService,
+  deleteAdminService,
 } from '../services/admin.services';
 
 // =================================================================
@@ -67,4 +68,27 @@ export const updateAdmin = async (req: Request, res: Response) => {
     return res.status(422).json({ msg: 'Unprocessable entity' });
   }
   return res.status(200).json(admin);
+};
+
+// =================================================================
+//        Delete: Existing Admin
+// =================================================================
+export const deleteAdmin = async (req: Request, res: Response) => {
+  const profile = req.body;
+
+  // Check if admin exists
+  const adminExists = await getAdminService(parseInt(profile.id));
+
+  // End function if admin doesn't exist
+  if (!adminExists) {
+    return res.status(403).json({ msg: 'Forbidden action' });
+  }
+
+  // Proceed deleting since admin exists
+  const admin = await deleteAdminService(profile);
+
+  if (!admin) {
+    return res.status(422).json({ msg: 'Profile could not deleted' });
+  }
+  return res.status(200).json({msg: 'Profile deleted successfully'});
 };
