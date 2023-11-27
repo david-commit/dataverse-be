@@ -9,7 +9,8 @@
   "scripts": {
     "start": "tsc && node dist/app.js",
     "lint": "eslint . --ext .ts",
-    "dev": "nodemon app.ts"
+    "dev": "nodemon app.ts",
+    "build": "tsc"
   },
   "author": "DataVerseKE",
   "license": "ISC",
