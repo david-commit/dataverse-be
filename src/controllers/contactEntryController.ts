@@ -47,7 +47,7 @@ export const createContactEntry = async (req: Request, res: Response) => {
 };
 
 // =================================================================
-//        Delete: Exosting Contact Entry
+//        Delete: Existing Contact Entry
 // =================================================================
 export const deleteContactEntry = async (req: Request, res: Response) => {
   const contactEntry = req.body;

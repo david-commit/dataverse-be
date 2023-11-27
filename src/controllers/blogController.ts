@@ -87,7 +87,7 @@ export const deleteBlog = async (req: Request, res: Response) => {
   const blog = await deleteBlogService(blogPost);
 
   if (!blog) {
-    return res.status(500).json({ msg: 'Insight blog could mot be deleted' });
+    return res.status(500).json({ msg: 'Insight blog could not be deleted' });
   }
   return res.status(200).json({ msg: 'Insight blog deleted successfully'});
 };

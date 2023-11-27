@@ -12,6 +12,7 @@ import {
   getJob,
   createJob,
   updateJob,
+  deleteJob,
 } from '../controllers/jobController';
 
 // =================================================================
@@ -33,5 +34,10 @@ router.post('/create-job', createJob);
 //        UPDATE: Existing Job
 // =================================================================
 router.put('/create-job', updateJob);
+
+// =================================================================
+//        Delete: Existing Job
+// =================================================================
+router.put('/delete-job', deleteJob);
 
 module.exports = router;

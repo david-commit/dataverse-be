@@ -4,6 +4,7 @@ import {
   getJobService,
   createJobService,
   updateJobService,
+  deleteJobService,
 } from '../services/job.services';
 
 // =================================================================
@@ -65,4 +66,26 @@ export const updateJob = async (req: Request, res: Response) => {
     return res.status(422).json({ msg: 'Unprocessable entiy' });
   }
   return res.status(200).json(job);
+};
+
+// =================================================================
+//        Delete: Existing Job
+// =================================================================
+export const deleteJob = async (req: Request, res: Response) => {
+  const jobRole = req.body;
+
+  // Check if job role exists
+  const jobRoleExists = await getJobService(parseInt(jobRole.id));
+
+  if (!jobRoleExists) {
+    return res.status(404).json({ msg: 'Job role not found'})
+  }
+
+  // Proceed deleting since the blog exists
+  const blog = await deleteJobService(jobRole.id);
+
+  if (!blog) {
+    return res.status(500).json({ msg: 'Job role could not be deleted' });
+  }
+  return res.status(200).json({ msg: 'Job role deleted successfully'});
 };
