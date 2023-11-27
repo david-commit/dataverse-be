@@ -63,3 +63,22 @@ export const createContactEntryService = async (
     },
   });
 };
+
+// =================================================================
+//        Delete: Existing Contact Entry
+// =================================================================
+type DeleteContactEntryType = {
+  id: number;
+};
+
+export const deleteContactEntryService = async (
+  contactEntry: DeleteContactEntryType
+) => {
+  const { id } = contactEntry;
+
+  return await db.contactEntry.delete({
+    where: {
+      id: id,
+    },
+  });
+};

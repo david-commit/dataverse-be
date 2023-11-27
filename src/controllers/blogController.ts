@@ -65,7 +65,7 @@ export const updateBlog = async (req: Request, res: Response) => {
   const blog = await updateBlogService(blogPost);
 
   if (!blog) {
-    return res.status(422).json({ msg: 'Unprosessable entity' });
+    return res.status(422).json({ msg: 'Insight blog could not be updated' });
   }
   return res.status(200).json(blog);
 };
@@ -87,7 +87,7 @@ export const deleteBlog = async (req: Request, res: Response) => {
   const blog = await deleteBlogService(blogPost);
 
   if (!blog) {
-    return res.status(422).json({ msg: 'Unprosessable entity' });
+    return res.status(500).json({ msg: 'Insight blog could mot be deleted' });
   }
-  return res.status(200).json(blog);
+  return res.status(200).json({ msg: 'Insight blog deleted successfully'});
 };
