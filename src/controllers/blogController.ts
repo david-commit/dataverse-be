@@ -4,6 +4,7 @@ import {
   getBlogService,
   createBlogService,
   updateBlogService,
+  deleteBlogService,
 } from '../services/blog.services';
 
 // =================================================================
@@ -62,6 +63,28 @@ export const updateBlog = async (req: Request, res: Response) => {
 
   // Proceed updating since the blog exists
   const blog = await updateBlogService(blogPost);
+
+  if (!blog) {
+    return res.status(422).json({ msg: 'Unprosessable entity' });
+  }
+  return res.status(200).json(blog);
+};
+
+// =================================================================
+//        Delete: Existing Blog
+// =================================================================
+export const deleteBlog = async (req: Request, res: Response) => {
+  const blogPost = req.body;
+
+  // Check if blog exists
+  const blogExists = await getBlogService(parseInt(blogPost.id));
+
+  if (!blogExists) {
+    return res.status(404).json({ msg: 'Blog not found'})
+  }
+
+  // Proceed deleting since the blog exists
+  const blog = await deleteBlogService(blogPost);
 
   if (!blog) {
     return res.status(422).json({ msg: 'Unprosessable entity' });

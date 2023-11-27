@@ -12,6 +12,7 @@ import {
   getBlog,
   createBlog,
   updateBlog,
+  deleteBlog,
 } from '../controllers/blogController';
 
 // =================================================================
@@ -33,5 +34,10 @@ router.post('/create-blog', createBlog);
 //        UPDATE: Existing Blog
 // =================================================================
 router.put('/create-blog', updateBlog);
+
+// =================================================================
+//        Delete: Existing Blog
+// =================================================================
+router.put('/delete-blog', deleteBlog);
 
 module.exports = router;

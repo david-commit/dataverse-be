@@ -85,7 +85,7 @@ export const deleteAdmin = async (req: Request, res: Response) => {
   }
 
   // Proceed deleting since admin exists
-  const admin = await deleteAdminService(profile);
+  const admin = await deleteAdminService(profile.email);
 
   if (!admin) {
     return res.status(422).json({ msg: 'Profile could not deleted' });
