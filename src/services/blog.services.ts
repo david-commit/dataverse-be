@@ -47,13 +47,19 @@ type NewBlogType = {
   blog_description: string;
   blog_image: string;
   blog_details: string;
-  slug: string,
+  slug: string;
   postedBy: string;
 };
 
 export const createBlogService = async (blogPost: NewBlogType) => {
-  const { blog_title, blog_description, blog_image, blog_details, slug, postedBy } =
-    blogPost;
+  const {
+    blog_title,
+    blog_description,
+    blog_image,
+    blog_details,
+    slug,
+    postedBy,
+  } = blogPost;
 
   return await db.blog.create({
     data: {
@@ -102,7 +108,6 @@ export const updateBlogService = async (blogPost: UpdateBlogType) => {
 //        Delete: Existing Blog
 // =================================================================
 export const deleteBlogService = async (blogID: number) => {
-
   return await db.blog.delete({
     where: {
       id: blogID,

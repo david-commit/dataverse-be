@@ -52,17 +52,18 @@ export const createBlog = async (req: Request, res: Response) => {
 //        UPDATE: Existing Blog
 // =================================================================
 export const updateBlog = async (req: Request, res: Response) => {
-  const blogPost = req.body;
+  const { blogID } = req.params;
+  const blogRole = req.body;
 
   // Check if blog exists
-  const blogExists = await getBlogService(parseInt(blogPost.id));
+  const blogExists = await getBlogService(parseInt(blogID));
 
   if (!blogExists) {
     return res.status(404).json({ msg: 'Blog not found' });
   }
 
   // Proceed updating since the blog exists
-  const blog = await updateBlogService(blogPost);
+  const blog = await updateBlogService(blogRole);
 
   if (!blog) {
     return res.status(422).json({ msg: 'Insight blog could not be updated' });

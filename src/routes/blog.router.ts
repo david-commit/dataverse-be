@@ -33,7 +33,7 @@ router.post('/create-blog', createBlog);
 // =================================================================
 //        UPDATE: Existing Blog
 // =================================================================
-router.put('/create-blog', updateBlog);
+router.put('/create-blog/:blogID', updateBlog);
 
 // =================================================================
 //        Delete: Existing Blog
