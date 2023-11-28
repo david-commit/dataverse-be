@@ -33,7 +33,7 @@ router.post('/create-job', createJob);
 // =================================================================
 //        UPDATE: Existing Job
 // =================================================================
-router.put('/create-job/', updateJob);
+router.put('/create-job/:jobID', updateJob);
 
 // =================================================================
 //        Delete: Existing Job

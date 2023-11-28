@@ -50,10 +50,11 @@ export const createJob = async (req: Request, res: Response) => {
 //        UPDATE: Existing Job
 // =================================================================
 export const updateJob = async (req: Request, res: Response) => {
+  const { jobID } = req.params;
   const jobRole = req.body;
 
   // Check if job exists
-  const jobExists = await getJobService(parseInt(jobRole.id));
+  const jobExists = await getJobService(parseInt(jobID));
 
   if (!jobExists) {
     return res.status(404).json({ msg: 'Role does not exist' });
