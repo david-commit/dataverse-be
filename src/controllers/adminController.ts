@@ -52,9 +52,10 @@ export const createAdmin = async (req: Request, res: Response) => {
 // =================================================================
 export const updateAdmin = async (req: Request, res: Response) => {
   const profile = req.body;
+  const { adminID } = req.params;
 
   // Check if admin exists
-  const adminExists = await getAdminService(parseInt(profile.id));
+  const adminExists = await getAdminService(parseInt(adminID));
 
   // End function if admin doesn't exist
   if (!adminExists) {

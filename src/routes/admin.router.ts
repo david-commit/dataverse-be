@@ -33,7 +33,7 @@ router.post('/create-admin', createAdmin);
 // =================================================================
 //        UPDATE: Existing Admin
 // =================================================================
-router.put('/create-admin', updateAdmin);
+router.put('/create-admin/:adminID', updateAdmin);
 
 // =================================================================
 //        Delete: Existing Admin
