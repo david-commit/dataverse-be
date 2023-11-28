@@ -58,7 +58,7 @@ export const updateBlog = async (req: Request, res: Response) => {
   const blogExists = await getBlogService(parseInt(blogPost.id));
 
   if (!blogExists) {
-    return res.status(404).json({ msg: 'Blog not found'})
+    return res.status(404).json({ msg: 'Blog not found' });
   }
 
   // Proceed updating since the blog exists
@@ -74,20 +74,20 @@ export const updateBlog = async (req: Request, res: Response) => {
 //        Delete: Existing Blog
 // =================================================================
 export const deleteBlog = async (req: Request, res: Response) => {
-  const blogPost = req.body;
+  const { blogID } = req.params;
 
   // Check if blog exists
-  const blogExists = await getBlogService(parseInt(blogPost.id));
+  const blogExists = await getBlogService(parseInt(blogID));
 
   if (!blogExists) {
-    return res.status(404).json({ msg: 'Blog not found'})
+    return res.status(404).json({ msg: 'Blog not found' });
   }
 
   // Proceed deleting since the blog exists
-  const blog = await deleteBlogService(blogPost);
+  const blog = await deleteBlogService(parseInt(blogID));
 
   if (!blog) {
     return res.status(500).json({ msg: 'Insight blog could not be deleted' });
   }
-  return res.status(200).json({ msg: 'Insight blog deleted successfully'});
+  return res.status(200).json({ msg: 'Insight blog deleted successfully' });
 };

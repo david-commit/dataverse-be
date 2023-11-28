@@ -38,6 +38,6 @@ router.put('/create-blog', updateBlog);
 // =================================================================
 //        Delete: Existing Blog
 // =================================================================
-router.put('/delete-blog', deleteBlog);
+router.put('/delete-blog/:blogID', deleteBlog);
 
 module.exports = router;

@@ -101,16 +101,11 @@ export const updateBlogService = async (blogPost: UpdateBlogType) => {
 // =================================================================
 //        Delete: Existing Blog
 // =================================================================
-type DeleteBlogType = {
-  id: number;
-};
-
-export const deleteBlogService = async (blogPost: DeleteBlogType) => {
-  const { id } = blogPost;
+export const deleteBlogService = async (blogID: number) => {
 
   return await db.blog.delete({
     where: {
-      id: id,
+      id: blogID,
     },
   });
 };
