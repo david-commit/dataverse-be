@@ -72,20 +72,20 @@ export const updateJob = async (req: Request, res: Response) => {
 //        Delete: Existing Job
 // =================================================================
 export const deleteJob = async (req: Request, res: Response) => {
-  const jobRole = req.body;
+  const { jobID } = req.params;
 
   // Check if job role exists
-  const jobRoleExists = await getJobService(parseInt(jobRole.id));
+  const jobRoleExists = await getJobService(parseInt(jobID));
 
   if (!jobRoleExists) {
-    return res.status(404).json({ msg: 'Job role not found'})
+    return res.status(404).json({ msg: 'Job role not found' });
   }
 
   // Proceed deleting since the blog exists
-  const blog = await deleteJobService(jobRole.id);
+  const blog = await deleteJobService(parseInt(jobID));
 
   if (!blog) {
     return res.status(500).json({ msg: 'Job role could not be deleted' });
   }
-  return res.status(200).json({ msg: 'Job role deleted successfully'});
+  return res.status(200).json({ msg: 'Job role deleted successfully' });
 };

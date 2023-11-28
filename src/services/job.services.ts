@@ -93,16 +93,11 @@ export const updateJobService = async (jobRole: JobUpdateType) => {
 // =================================================================
 //        Delete: Existing Job
 // =================================================================
-type JobDeleteType = {
-  id: number;
-};
 
-export const deleteJobService = async (jobRole: JobDeleteType) => {
-  const { id } = jobRole;
-
+export const deleteJobService = async (jobID: number) => {
   return await db.job.delete({
     where: {
-      id: id,
+      id: jobID,
     },
   });
 };
