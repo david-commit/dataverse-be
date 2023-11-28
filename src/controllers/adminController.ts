@@ -74,10 +74,10 @@ export const updateAdmin = async (req: Request, res: Response) => {
 //        Delete: Existing Admin
 // =================================================================
 export const deleteAdmin = async (req: Request, res: Response) => {
-  const profile = req.body;
+  const { adminID } = req.params;
 
   // Check if admin exists
-  const adminExists = await getAdminService(parseInt(profile.id));
+  const adminExists = await getAdminService(parseInt(adminID));
 
   // End function if admin doesn't exist
   if (!adminExists) {
@@ -85,10 +85,10 @@ export const deleteAdmin = async (req: Request, res: Response) => {
   }
 
   // Proceed deleting since admin exists
-  const admin = await deleteAdminService(profile.email);
+  const admin = await deleteAdminService(parseInt(adminID));
 
   if (!admin) {
     return res.status(500).json({ msg: 'Profile could not deleted' });
   }
-  return res.status(200).json({msg: 'Profile deleted successfully'});
+  return res.status(200).json({ msg: 'Profile deleted successfully' });
 };

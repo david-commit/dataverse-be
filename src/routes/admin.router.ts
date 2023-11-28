@@ -38,6 +38,6 @@ router.put('/create-admin', updateAdmin);
 // =================================================================
 //        Delete: Existing Admin
 // =================================================================
-router.delete('/delete-admin', deleteAdmin);
+router.delete('/delete-admin/:adminID', deleteAdmin);
 
 module.exports = router;
