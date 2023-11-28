@@ -32,6 +32,6 @@ router.post('/create-contact-entry', createContactEntry);
 // =================================================================
 //        Delete: Existing Contact Entry
 // =================================================================
-router.post('/delete-contact-entry', deleteContactEntry);
+router.post('/delete-contact-entry/:contactEntryID', deleteContactEntry);
 
 module.exports = router;

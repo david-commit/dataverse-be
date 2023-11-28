@@ -50,11 +50,11 @@ export const createContactEntry = async (req: Request, res: Response) => {
 //        Delete: Existing Contact Entry
 // =================================================================
 export const deleteContactEntry = async (req: Request, res: Response) => {
-  const contactEntry = req.body;
+  const { contactEntryID } = req.params;
 
   // Check if contact entry exists
   const contactEntryExists = await getContactEntryService(
-    parseInt(contactEntry.id)
+    parseInt(contactEntryID)
   );
 
   if (!contactEntryExists) {
@@ -62,10 +62,10 @@ export const deleteContactEntry = async (req: Request, res: Response) => {
   }
 
   // Proceed deleting since entry exists
-  const entry = await deleteContactEntryService(contactEntry);
+  const entry = await deleteContactEntryService(parseInt(contactEntryID));
 
   if (!entry) {
     return res.status(500).json({ msg: 'Contact entry could not be deleted' });
   }
-  return res.status(200).json({msg: 'Contact entry deleted successfully'});
+  return res.status(200).json({ msg: 'Contact entry deleted successfully' });
 };
