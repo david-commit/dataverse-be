@@ -4,6 +4,8 @@ import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
 import cors from 'cors';
+import helmet from 'helmet';
+import cookieParser from 'cookie-parser';
 
 // ======== > Import Routes
 const adminRoutes = require('./src/routes/admin.router');
@@ -23,15 +25,17 @@ if (!port) {
 }
 
 // ======== > Middlewares
+app.use(helmet());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(morgan('dev'));
 
 // ======== > Route Middlewares
-app.use('/api', adminRoutes)
+app.use('/api', adminRoutes);
 app.use('/api', jobRoutes);
-app.use('/api', blogRoutes)
+app.use('/api', blogRoutes);
 app.use('/api', contactEntryRoutes);
 
 app.listen(port || 5055, () =>
