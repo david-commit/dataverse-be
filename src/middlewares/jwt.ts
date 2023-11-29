@@ -28,5 +28,28 @@ export const generateTokenAndSetCookies = (
     secure: true,
   });
 
-  return token
+  return token;
+};
+
+// =================================================================
+//        Middleware to verify the client token is valid
+// =================================================================
+export const verifyToken = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  // Get accessToken cookie from request
+  const accessToken = req.cookies;
+  console.log(accessToken);
+
+  // End function if token is unavailablr
+  if (!accessToken) {
+    return res.status(403).json({ msg: 'Invalid token' });
+  }
+
+  // Verify token
+  const verifiedToken = jwt.verify(accessToken, process.env.SECRET);
+
+  next();
 };
