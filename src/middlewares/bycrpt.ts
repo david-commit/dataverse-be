@@ -8,3 +8,13 @@ export const hashPasswordService = async (password: string) => {
   return hashedPassword;
 };
 
+// =================================================================
+//           Compare user password with existing
+// =================================================================
+export const comparePasswordService = async (
+  password: string,
+  dbPassword: string
+) => {
+  const isPasswordCorrect = await bcrypt.compare(password, dbPassword);
+  return isPasswordCorrect
+};

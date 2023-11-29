@@ -41,6 +41,7 @@ export const getAdminServiceByEmail = async (adminEmail: string) => {
       id: true,
       email: true,
       phone: true,
+      password: true,
     },
   });
 };
