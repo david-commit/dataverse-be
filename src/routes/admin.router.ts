@@ -16,6 +16,11 @@ import {
 } from '../controllers/adminController';
 
 // =================================================================
+//        IMPORT: Mddleware validators
+// =================================================================
+import { signupValidator } from '../validators/authValidators';
+
+// =================================================================
 //        GET: All Admins
 // =================================================================
 router.get('/get-admins', getAllAdmins);
@@ -28,7 +33,7 @@ router.get('/get-admins/:adminID', getAdmin);
 // =================================================================
 //        POST: New Admin
 // =================================================================
-router.post('/create-admin', createAdmin);
+router.post('/create-admin', signupValidator, createAdmin);
 
 // =================================================================
 //        UPDATE: Existing Admin
