@@ -1,7 +1,10 @@
 import type { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { db } from '../utils/db.server';
-import { hashPasswordService } from '../middlewares/jwt';
+import {
+  hashPasswordService,
+  generateTokenAndSetCookies,
+} from '../middlewares/jwt';
 import {
   getAllAdminsService,
   getAdminService,
@@ -68,6 +71,10 @@ export const createAdmin = async (req: Request, res: Response) => {
 
   // Proceed to create admin profile
   const admin = await createAdminService(updatedProfile);
+
+  // Generate token and set cookie response
+  const tokenPayload = { id: admin.id, email: admin.email };
+  generateTokenAndSetCookies(tokenPayload, res);
 
   return res.status(201).json({
     payload: {
