@@ -38,6 +38,6 @@ router.put('/create-job/:jobID', updateJob);
 // =================================================================
 //        Delete: Existing Job
 // =================================================================
-router.put('/delete-job:jobID', deleteJob);
+router.delete('/delete-job/:jobID', deleteJob);
 
 module.exports = router;

@@ -68,7 +68,7 @@ export const updateBlog = async (req: Request, res: Response) => {
   if (!blog) {
     return res.status(422).json({ msg: 'Insight blog could not be updated' });
   }
-  return res.status(200).json(blog);
+  return res.status(202).json(blog);
 };
 
 // =================================================================
@@ -90,5 +90,5 @@ export const deleteBlog = async (req: Request, res: Response) => {
   if (!blog) {
     return res.status(500).json({ msg: 'Insight blog could not be deleted' });
   }
-  return res.status(200).json({ msg: 'Insight blog deleted successfully' });
+  return res.status(204).json({ msg: 'Insight blog deleted successfully' });
 };

@@ -67,5 +67,5 @@ export const deleteContactEntry = async (req: Request, res: Response) => {
   if (!entry) {
     return res.status(500).json({ msg: 'Contact entry could not be deleted' });
   }
-  return res.status(200).json({ msg: 'Contact entry deleted successfully' });
+  return res.status(204).json({ msg: 'Contact entry deleted successfully' });
 };

@@ -66,7 +66,7 @@ export const updateJob = async (req: Request, res: Response) => {
   if (!job) {
     return res.status(422).json({ msg: 'Unprocessable entiy' });
   }
-  return res.status(200).json(job);
+  return res.status(202).json(job);
 };
 
 // =================================================================
@@ -88,5 +88,5 @@ export const deleteJob = async (req: Request, res: Response) => {
   if (!blog) {
     return res.status(500).json({ msg: 'Job role could not be deleted' });
   }
-  return res.status(200).json({ msg: 'Job role deleted successfully' });
+  return res.status(204).json({ msg: 'Job role deleted successfully' });
 };

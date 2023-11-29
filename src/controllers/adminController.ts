@@ -68,7 +68,7 @@ export const updateAdmin = async (req: Request, res: Response) => {
   if (!admin) {
     return res.status(422).json({ msg: 'Unprocessable entity' });
   }
-  return res.status(200).json(admin);
+  return res.status(202).json(admin);
 };
 
 // =================================================================
@@ -91,5 +91,5 @@ export const deleteAdmin = async (req: Request, res: Response) => {
   if (!admin) {
     return res.status(500).json({ msg: 'Profile could not deleted' });
   }
-  return res.status(200).json({ msg: 'Profile deleted successfully' });
+  return res.status(204).json({ msg: 'Profile deleted successfully' });
 };
