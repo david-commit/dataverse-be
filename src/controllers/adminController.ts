@@ -38,7 +38,7 @@ export const getAdmin = async (req: Request, res: Response) => {
 };
 
 // =================================================================
-//        POST: New Admin
+//        POST: New Admin / SIGNUP
 // =================================================================
 export const createAdmin = async (req: Request, res: Response) => {
   const profile = req.body;
