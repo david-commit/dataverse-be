@@ -1,4 +1,7 @@
 import type { Request, Response } from 'express';
+import { validationResult } from 'express-validator';
+import { db } from '../utils/db.server';
+import { hashPasswordService } from '../middlewares/jwt';
 import {
   getAllAdminsService,
   getAdminService,
@@ -39,12 +42,41 @@ export const getAdmin = async (req: Request, res: Response) => {
 export const createAdmin = async (req: Request, res: Response) => {
   const profile = req.body;
 
-  const admin = await createAdminService(profile);
-
-  if (!admin) {
-    return res.status(422).json({ msg: 'Validation errors' });
+  // Check for validation errors
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
   }
-  return res.status(200).json(admin);
+
+  // Check if user already exists
+  const adminExists = await db.admin.findUnique({
+    where: {
+      email: profile.email,
+    },
+  });
+
+  // If profile exists, return error message
+  if (adminExists) {
+    return res.status(403).json({ msg: 'Profile already exists' });
+  }
+
+  // Hash plain password
+  const hashedPassword = await hashPasswordService(profile.password);
+
+  // Update profile with the hashed password
+  const updatedProfile = { ...profile, password: hashedPassword };
+
+  // Proceed to create admin profile
+  const admin = await createAdminService(updatedProfile);
+
+  return res.status(201).json({
+    payload: {
+      id: admin.id,
+      name: admin.name,
+      email: admin.email,
+      phone: admin.phone,
+    },
+  });
 };
 
 // =================================================================
