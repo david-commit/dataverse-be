@@ -14,12 +14,28 @@ export const getAllAdminsService = async () => {
 };
 
 // =================================================================
-//        GET: Single Admin
+//        GET: Single Admin by ID
 // =================================================================
 export const getAdminService = async (adminID: number) => {
   return await db.admin.findUnique({
     where: {
       id: adminID,
+    },
+    select: {
+      id: true,
+      email: true,
+      phone: true,
+    },
+  });
+};
+
+// =================================================================
+//        GET: Single Admin by EMAIL
+// =================================================================
+export const getAdminServiceByEmail = async (adminEmail: string) => {
+  return await db.admin.findUnique({
+    where: {
+      email: adminEmail,
     },
     select: {
       id: true,

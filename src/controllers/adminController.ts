@@ -1,10 +1,8 @@
 import type { Request, Response } from 'express';
 import { validationResult } from 'express-validator';
 import { db } from '../utils/db.server';
-import {
-  hashPasswordService,
-  generateTokenAndSetCookies,
-} from '../middlewares/jwt';
+import { generateTokenAndSetCookies } from '../middlewares/jwt';
+import { hashPasswordService } from '../middlewares/bycrpt';
 import {
   getAllAdminsService,
   getAdminService,
