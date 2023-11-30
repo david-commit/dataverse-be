@@ -16,7 +16,6 @@ export const loginController = async (req: Request, res: Response) => {
   if (!adminExists) {
     return res.status(403).json({ msg: 'Invalid email or password' });
   }
-
   // Compare input password to db password
   const isPasswordCorrect = await comparePasswordService(
     password,

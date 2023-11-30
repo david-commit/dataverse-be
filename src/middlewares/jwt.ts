@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import jwt, { VerifyErrors, JwtPayload } from 'jsonwebtoken';
+const SECRET = process.env.SECRET;
 
 // =================================================================
 //           Generate a token and attach it to the response header
@@ -13,8 +14,6 @@ export const generateTokenAndSetCookies = (
   profileData: profilePayloadDataType,
   res: Response
 ) => {
-  const SECRET = process.env.SECRET;
-
   // Create token from payload
   const token = jwt.sign(profileData, SECRET, {
     expiresIn: '1d',
@@ -40,16 +39,24 @@ export const verifyToken = async (
   next: NextFunction
 ) => {
   // Get accessToken cookie from request
-  const accessToken = req.cookies;
-  console.log(accessToken);
+  const token = req.headers['authorization'];
+  console.log(token);
 
   // End function if token is unavailablr
-  if (!accessToken) {
-    return res.status(403).json({ msg: 'Invalid token' });
+  if (!token) {
+    return res
+      .status(401)
+      .json({ message: 'Authentication failed: No token provided' });
   }
 
   // Verify token
-  const verifiedToken = jwt.verify(accessToken, process.env.SECRET);
+  const verifiedToken = jwt.verify(token, process.env.SECRET);
+
+  if (!verifiedToken) {
+    return res
+      .status(403)
+      .json({ msg: 'Authentication failed: Invalid token' });
+  }
 
   next();
 };

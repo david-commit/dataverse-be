@@ -13,7 +13,7 @@ import { verifyToken } from '../middlewares/jwt';
 // =================================================================
 //        POST: Login
 // =================================================================
-// router.post('/admin-login', loginController);
-router.post('/admin-login', verifyToken, loginController);
+router.post('/admin-login', loginController);
+// router.post('/admin-login', verifyToken, loginController);
 
 module.exports = router;
