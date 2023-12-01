@@ -31,7 +31,7 @@ export const generateTokenAndSetCookies = (
 };
 
 // =================================================================
-//        Middleware to verify the client token is valid
+//        MIDDLEWARE to verify the client token is valid (VALIDATION FOR BACKEND)
 // =================================================================
 export const verifyToken = async (
   req: Request,
@@ -41,11 +41,11 @@ export const verifyToken = async (
   // Get accessToken cookie from request
   const token = req.cookies.accessToken;
 
-  // End function if token is unavailablr
+  // End function if token is unavailable
   if (!token) {
     return res
       .status(401)
-      .json({ message: 'Authentication failed: No token provided' });
+      .json({ msg: 'Authentication failed: No token provided' });
   }
 
   // Verify token
@@ -59,6 +59,41 @@ export const verifyToken = async (
     }
 
     next();
+  } catch (err) {
+    return res
+      .status(500)
+      .json({ msg: 'Internal server error during token verification' });
+  }
+};
+
+// =================================================================
+//        Function to verify the client token is valid (VALIDATION FOR FRONTEND)
+// =================================================================
+export const confirmAuthentication = async (
+  req: Request,
+  res: Response,
+) => {
+  // Get accessToken cookie from request
+  const token = req.cookies.accessToken;
+
+  // End function if token is unavailable
+  if (!token) {
+    return res
+      .status(401)
+      .json({ msg: 'Authentication failed: No token provided' });
+  }
+
+  // Verify token
+  try {
+    const verifiedToken = jwt.verify(token, process.env.SECRET);
+
+    if (!verifiedToken) {
+      return res
+        .status(403)
+        .json({ msg: 'Authentication failed: Invalid token' });
+    }
+
+    return res.status(200).json({ msg: 'Authorized' });
   } catch (err) {
     return res
       .status(500)
