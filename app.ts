@@ -26,11 +26,17 @@ if (!port) {
 }
 
 // ======== > Middlewares
+app.use(cookieParser());
 app.use(helmet());
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: process.env.FRONTEND_URL ?? 'http://localhost:5174',
+    optionsSuccessStatus: 200,
+  })
+);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(morgan('dev'));
 
 // ======== > Route Middlewares

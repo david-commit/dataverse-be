@@ -21,6 +21,8 @@ To set up the backend service on your local machine, follow the following steps:
     <li>PORT variable eg <code>PORT=2030</code></li>
     <li>DATABASE_URL variable which must be <code>DATABASE_URL='file:./dev.db'</code></li>
     <li>SECRET variable eg <code>SECRET=ilovechapobeans</code></li>
+    <li>FRONTEND_URL variable eg <code>FRONTEND_URL=http://localhost:5174</code>(vite delelopment link)</li>
+    <li>NODE_ENV variable eg <code>NODE_ENV=production</code> or <code>ENV=development</code></li>
    </ol>
 4. After the variables are loaded, run: `npx prisma db push` to build the database from the schema.
 5. Next, run: `npx prisma db seed` to seed the database.
@@ -39,9 +41,12 @@ To set up the backend service on your local machine, follow the following steps:
    `cd dataverse-fe && npm install && code .`
 
 ## Deloyment Instructions - PRODUCTION ENV
+
 Instructions to be provided
 
 ## Design
+
 Figma will be used to design the frames to represent the website. Links below:
- - [Edit mode](https://www.figma.com/file/NN2scaWfPt9yefajzQWTXw/DataVerseKE?type=design&node-id=0%3A1&mode=design&t=idrwN6e2rLwwZvLi-1) 
- - [Presentation Mode](https://www.figma.com/proto/NN2scaWfPt9yefajzQWTXw/DataVerseKE?type=design&node-id=0-1&t=idrwN6e2rLwwZvLi-0&scaling=min-zoom&page-id=0%3A1)
+
+- [Edit mode](https://www.figma.com/file/NN2scaWfPt9yefajzQWTXw/DataVerseKE?type=design&node-id=0%3A1&mode=design&t=idrwN6e2rLwwZvLi-1)
+- [Presentation Mode](https://www.figma.com/proto/NN2scaWfPt9yefajzQWTXw/DataVerseKE?type=design&node-id=0-1&t=idrwN6e2rLwwZvLi-0&scaling=min-zoom&page-id=0%3A1)

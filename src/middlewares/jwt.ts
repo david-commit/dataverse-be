@@ -24,7 +24,7 @@ export const generateTokenAndSetCookies = (
     httpOnly: true,
     maxAge: 15 * 24 * 60 * 60 * 1000, // 15 days
     sameSite: 'strict',
-    secure: true,
+    secure: process.env.NODE_ENV !== 'development',
   });
 
   return token;
@@ -39,8 +39,7 @@ export const verifyToken = async (
   next: NextFunction
 ) => {
   // Get accessToken cookie from request
-  const token = req.headers['authorization'];
-  console.log(token);
+  const token = req.cookies.accessToken;
 
   // End function if token is unavailablr
   if (!token) {
@@ -50,13 +49,19 @@ export const verifyToken = async (
   }
 
   // Verify token
-  const verifiedToken = jwt.verify(token, process.env.SECRET);
+  try {
+    const verifiedToken = jwt.verify(token, process.env.SECRET);
 
-  if (!verifiedToken) {
+    if (!verifiedToken) {
+      return res
+        .status(403)
+        .json({ msg: 'Authentication failed: Invalid token' });
+    }
+
+    next();
+  } catch (err) {
     return res
-      .status(403)
-      .json({ msg: 'Authentication failed: Invalid token' });
+      .status(500)
+      .json({ msg: 'Internal server error during token verification' });
   }
-
-  next();
 };
