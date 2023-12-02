@@ -1,5 +1,5 @@
 // ======== > Import Libs
-import express from 'express';
+import express, { Response, Request } from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
@@ -31,7 +31,7 @@ app.use(helmet());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL ?? 'http://localhost:5174',
+    origin: process.env.FRONTEND_URL ?? 'http://localhost:5173',
     optionsSuccessStatus: 200,
   })
 );
@@ -45,6 +45,9 @@ app.use('/api', jobRoutes);
 app.use('/api', blogRoutes);
 app.use('/api', contactEntryRoutes);
 app.use('/api', loginRoute);
+// app.use('/api', (req: Request, res: Response) => {
+//   res.status(200).json({ success: true });
+// });
 
 app.listen(port || 5055, () =>
   console.log(`Server running on http://localhost:${port}`)

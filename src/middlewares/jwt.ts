@@ -101,11 +101,18 @@ export const confirmAuthentication = async (req: Request, res: Response) => {
 // =================================================================
 //           Generate a TEMPORARY token for reset password
 // =================================================================
-export const generateToken = (profileData: profilePayloadDataType, tempSecret: string) => {
-  // Create token from payload
-  const token = jwt.sign(profileData, tempSecret, {
-    expiresIn: '30m',
-  });
-
-  return token;
+export const generateToken = async (
+  profileData: profilePayloadDataType,
+  tempSecret: string
+) => {
+  try {
+    // Create token from payload
+    const token = jwt.sign(profileData, tempSecret, {
+      expiresIn: '30m',
+    });
+    console.log(token);
+    return token;
+  } catch (error) {
+    return error;
+  }
 };

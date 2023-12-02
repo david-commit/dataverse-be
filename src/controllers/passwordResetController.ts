@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { getAdminServiceByEmail } from '../services/admin.services';
-import { generateTokenAndSetCookies, generateToken } from '../middlewares/jwt';
+import { generateToken } from '../middlewares/jwt';
 const FRONTEND_URL = process.env.FRONTEND_URL;
 const SECRET = process.env.SECRET;
 
@@ -9,13 +9,14 @@ const SECRET = process.env.SECRET;
 // =================================================================
 export const forgotPassword = async (req: Request, res: Response) => {
   const { email } = req.body;
+  console.log(email)
 
   // Check is admin exists
   const adminExists = await getAdminServiceByEmail(email);
 
   // If profile doesn't exist, return error message
   if (!adminExists) {
-    return res.status(500).json({ msg: 'Server error' });
+    return res.status(422).json({ msg: 'Invalid email address' });
   }
 
   // Proceed to generate a token and embed to link
@@ -29,13 +30,13 @@ export const forgotPassword = async (req: Request, res: Response) => {
   const tempSecret = SECRET + adminExists.password;
 
   // Generate token with the new temporary SECRET
-  const token = generateToken(tokenPayload, tempSecret);
+  const token = await generateToken(tokenPayload, tempSecret);
 
   // Form link to send to user via email
   const resetLink = `${FRONTEND_URL}/forgot-password/${adminExists.id}/${token}`;
-  console.log(resetLink)
+  console.log(resetLink);
 
-  return resetLink;
+  return res.status(200).json({ link: resetLink });
 };
 
 // =================================================================
