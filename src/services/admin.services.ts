@@ -25,6 +25,7 @@ export const getAdminService = async (adminID: number) => {
       id: true,
       email: true,
       phone: true,
+      password: true
     },
   });
 };

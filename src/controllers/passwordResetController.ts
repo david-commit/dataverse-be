@@ -1,6 +1,8 @@
-import { Request, Response } from 'express';
+import { Request, Response, request, response } from 'express';
+import jwt from 'jsonwebtoken';
 import { getAdminServiceByEmail } from '../services/admin.services';
 import { generateToken } from '../middlewares/jwt';
+import { getAdminService } from '../services/admin.services';
 const FRONTEND_URL = process.env.FRONTEND_URL;
 const SECRET = process.env.SECRET;
 
@@ -36,21 +38,36 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
   // Form link to send to user via email
   const resetLink = `${FRONTEND_URL}/reset-password/${adminExists.id}/${encodedToken}`;
+  console.log(resetLink);
 
   return res.status(200).json({ link: resetLink });
 };
 
 // =================================================================
-//        POST: Reset user provided password
+//        POST: Reset db password with user provided password
 // =================================================================
 export const resetPassword = async (req: Request, res: Response) => {
-  const { email, newPassword } = req.body;
+  const { id, decodedToken, password } = req.body;
+  console.log(req.body);
 
-  // Check is admin exists
-  const adminExists = await getAdminServiceByEmail(email);
+  // Check if user exists - Find the user by ID
+  const adminExists = await getAdminService(parseInt(id));
 
-  // If profile doesn't exist, return error message
+  // If user ID doesn't exist, end the function
   if (!adminExists) {
-    return res.status(500).json({ msg: 'Password could not be updated' });
+    return res.status(403).json({ msg: 'User ID not found' });
+  }
+
+  // Recreate the temporary secret used to sign the token
+  const tempSecret = SECRET + adminExists.password;
+
+  // Verify provided token, function ends if token isn't valid
+  const validToken = jwt.verify(decodedToken, tempSecret);
+
+  // End function if token is valid
+  if (!validToken) {
+    return res
+      .status(403)
+      .json({ msg: 'Authentication failed: Invalid token' });
   }
 };

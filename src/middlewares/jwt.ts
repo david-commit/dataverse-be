@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import jwt, { VerifyErrors, JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 const SECRET = process.env.SECRET;
 
 // =================================================================
@@ -67,7 +67,7 @@ export const verifyToken = async (
 };
 
 // =================================================================
-//        Function to verify the client token is valid (VALIDATION FOR FRONTEND)
+//        Function to verify the client token is valid (VALIDATION FOR FRONTEND rotected routes)
 // =================================================================
 export const confirmAuthentication = async (req: Request, res: Response) => {
   // Get accessToken cookie from request
