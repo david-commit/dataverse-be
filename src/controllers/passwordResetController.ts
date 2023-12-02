@@ -5,6 +5,7 @@ import {
   updateAdminService,
 } from '../services/admin.services';
 import { generateToken } from '../middlewares/jwt';
+import { hashPasswordService } from '../middlewares/bycrpt';
 import { getAdminService } from '../services/admin.services';
 const FRONTEND_URL = process.env.FRONTEND_URL;
 const SECRET = process.env.SECRET;
@@ -73,12 +74,17 @@ export const resetPassword = async (req: Request, res: Response) => {
       .json({ msg: 'Authentication failed: Invalid token' });
   }
 
-  // Proceed to update user password
+  // Hash the user provided password
+  const hashedPassword = await hashPasswordService(password);
+
+  // Proceed to update user password (hashed)
   const updatePayload = {
     email: adminExists.email,
-    password,
+    password: hashedPassword,
   };
-  const resetUserPassword = updateAdminService(updatePayload);
+
+  // Only updates the user password
+  const resetUserPassword = await updateAdminService(updatePayload);
 
   return res.status(204).json(resetUserPassword)
 };
