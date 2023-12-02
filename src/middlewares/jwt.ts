@@ -107,12 +107,13 @@ export const generateToken = async (
 ) => {
   try {
     // Create token from payload
-    const token = jwt.sign(profileData, tempSecret, {
+    const token = await jwt.sign(profileData, tempSecret, {
       expiresIn: '30m',
     });
     console.log(token);
     return token;
   } catch (error) {
+    console.log(error)
     return error;
   }
 };

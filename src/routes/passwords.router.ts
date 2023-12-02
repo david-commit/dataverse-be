@@ -13,12 +13,12 @@ import {
 } from '../controllers/passwordResetController';
 
 // =================================================================
-//        POST: Login
+//        POST: Forgot Password (Check email & send token)
 // =================================================================
 router.post('/forgot-password', forgotPassword);
 
 // =================================================================
-//        POST: Verify user token
+//        POST: Receive and set new password
 // =================================================================
 router.post('/reset-password', resetPassword);
 

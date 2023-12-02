@@ -1,19 +1,19 @@
 export const testAdminData = [
   {
     name: 'David',
-    email: 'd@d.com',
+    email: 'david@david.com',
     password: 'password',
     phone: '0712345678',
   },
   {
     name: 'Lynette',
-    email: 'l@l.com',
+    email: 'lynette@lynette.com',
     password: 'password',
     phone: '0712345678',
   },
   {
     name: 'Faith',
-    email: 'f@f.com',
+    email: 'faith@faith.com',
     password: 'password',
     phone: '0712345678',
   },

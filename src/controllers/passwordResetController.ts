@@ -9,10 +9,10 @@ const SECRET = process.env.SECRET;
 // =================================================================
 export const forgotPassword = async (req: Request, res: Response) => {
   const { email } = req.body;
-  console.log(email)
 
   // Check is admin exists
   const adminExists = await getAdminServiceByEmail(email);
+  console.log(adminExists)
 
   // If profile doesn't exist, return error message
   if (!adminExists) {
