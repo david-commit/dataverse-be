@@ -110,10 +110,8 @@ export const generateToken = async (
     const token = await jwt.sign(profileData, tempSecret, {
       expiresIn: '30m',
     });
-    console.log(token);
     return token;
   } catch (error) {
-    console.log(error)
     return error;
   }
 };

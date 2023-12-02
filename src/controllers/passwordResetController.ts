@@ -12,7 +12,6 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
   // Check is admin exists
   const adminExists = await getAdminServiceByEmail(email);
-  console.log(adminExists)
 
   // If profile doesn't exist, return error message
   if (!adminExists) {
@@ -32,9 +31,11 @@ export const forgotPassword = async (req: Request, res: Response) => {
   // Generate token with the new temporary SECRET
   const token = await generateToken(tokenPayload, tempSecret);
 
+  // Convert the token to a Base64-encoded string
+  const encodedToken = Buffer.from(token).toString('base64');
+
   // Form link to send to user via email
-  const resetLink = `${FRONTEND_URL}/forgot-password/${adminExists.id}/${token}`;
-  console.log(resetLink);
+  const resetLink = `${FRONTEND_URL}/reset-password/${adminExists.id}/${encodedToken}`;
 
   return res.status(200).json({ link: resetLink });
 };
