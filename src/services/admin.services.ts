@@ -1,4 +1,5 @@
 import { db } from '../utils/db.server';
+import { Request, Response } from 'express';
 
 // =================================================================
 //        GET: All Admins
@@ -25,7 +26,7 @@ export const getAdminService = async (adminID: number) => {
       id: true,
       email: true,
       phone: true,
-      password: true
+      password: true,
     },
   });
 };
@@ -73,14 +74,14 @@ export const createAdminService = async (profile: AdminNewProfileType) => {
 // =================================================================
 //        UPDATE: Existing Admin
 // =================================================================
-type AdminUpdateProfileType = {
-  name: string;
-  email: string;
-  password: string;
-  phone: string;
-};
+// type AdminUpdateProfileType = {
+//   name: string;
+//   email: string;
+//   password: string;
+//   phone: string;
+// };
 
-export const updateAdminService = async (profile: AdminUpdateProfileType) => {
+export const updateAdminService = async (profile: any) => {
   const { name, email, password, phone } = profile;
 
   return await db.admin.update({

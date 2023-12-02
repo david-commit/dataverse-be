@@ -1,6 +1,9 @@
-import { Request, Response, request, response } from 'express';
+import { Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { getAdminServiceByEmail } from '../services/admin.services';
+import {
+  getAdminServiceByEmail,
+  updateAdminService,
+} from '../services/admin.services';
 import { generateToken } from '../middlewares/jwt';
 import { getAdminService } from '../services/admin.services';
 const FRONTEND_URL = process.env.FRONTEND_URL;
@@ -48,7 +51,6 @@ export const forgotPassword = async (req: Request, res: Response) => {
 // =================================================================
 export const resetPassword = async (req: Request, res: Response) => {
   const { id, decodedToken, password } = req.body;
-  console.log(req.body);
 
   // Check if user exists - Find the user by ID
   const adminExists = await getAdminService(parseInt(id));
@@ -70,4 +72,13 @@ export const resetPassword = async (req: Request, res: Response) => {
       .status(403)
       .json({ msg: 'Authentication failed: Invalid token' });
   }
+
+  // Proceed to update user password
+  const updatePayload = {
+    email: adminExists.email,
+    password,
+  };
+  const resetUserPassword = updateAdminService(updatePayload);
+
+  return res.status(204).json(resetUserPassword)
 };
