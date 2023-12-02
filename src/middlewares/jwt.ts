@@ -69,10 +69,7 @@ export const verifyToken = async (
 // =================================================================
 //        Function to verify the client token is valid (VALIDATION FOR FRONTEND)
 // =================================================================
-export const confirmAuthentication = async (
-  req: Request,
-  res: Response,
-) => {
+export const confirmAuthentication = async (req: Request, res: Response) => {
   // Get accessToken cookie from request
   const token = req.cookies.accessToken;
 
@@ -99,4 +96,16 @@ export const confirmAuthentication = async (
       .status(500)
       .json({ msg: 'Internal server error during token verification' });
   }
+};
+
+// =================================================================
+//           Generate a TEMPORARY token for reset password
+// =================================================================
+export const generateToken = (profileData: profilePayloadDataType, tempSecret: string) => {
+  // Create token from payload
+  const token = jwt.sign(profileData, tempSecret, {
+    expiresIn: '30m',
+  });
+
+  return token;
 };

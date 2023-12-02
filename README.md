@@ -21,7 +21,7 @@ To set up the backend service on your local machine, follow the following steps:
     <li>PORT variable eg <code>PORT=2030</code></li>
     <li>DATABASE_URL variable which must be <code>DATABASE_URL='file:./dev.db'</code></li>
     <li>SECRET variable eg <code>SECRET=ilovechapobeans</code></li>
-    <li>FRONTEND_URL variable eg <code>FRONTEND_URL=http://localhost:5174</code>(vite delelopment link)</li>
+    <li>FRONTEND_URL variable eg <code>FRONTEND_URL=http://localhost:5174</code>(vite development link)</li>
     <li>NODE_ENV variable eg <code>NODE_ENV=production</code> or <code>ENV=development</code></li>
    </ol>
 4. After the variables are loaded, run: `npx prisma db push` to build the database from the schema.

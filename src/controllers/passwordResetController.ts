@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import { getAdminServiceByEmail } from '../services/admin.services';
-import { generateTokenAndSetCookies } from '../middlewares/jwt';
+import { generateTokenAndSetCookies, generateToken } from '../middlewares/jwt';
+const FRONTEND_URL = process.env.FRONTEND_URL;
+const SECRET = process.env.SECRET;
 
 // =================================================================
 //        POST: Forgot Password (Send token to user email)
@@ -15,6 +17,25 @@ export const forgotPassword = async (req: Request, res: Response) => {
   if (!adminExists) {
     return res.status(500).json({ msg: 'Server error' });
   }
+
+  // Proceed to generate a token and embed to link
+  const tokenPayload = {
+    id: adminExists.id,
+    email: adminExists.email,
+  };
+
+  // Create a new temporary SECRET with existing password
+  // Token will be invalid once password is changed, thus a One Time Token
+  const tempSecret = SECRET + adminExists.password;
+
+  // Generate token with the new temporary SECRET
+  const token = generateToken(tokenPayload, tempSecret);
+
+  // Form link to send to user via email
+  const resetLink = `${FRONTEND_URL}/forgot-password/${adminExists.id}/${token}`;
+  console.log(resetLink)
+
+  return resetLink;
 };
 
 // =================================================================
