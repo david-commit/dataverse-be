@@ -61,30 +61,28 @@ export const resetPassword = async (req: Request, res: Response) => {
     return res.status(403).json({ msg: 'User ID not found' });
   }
 
-  // Recreate the temporary secret used to sign the token
-  const tempSecret = SECRET + adminExists.password;
+  try {
+    // Recreate the temporary secret used to sign the token
+    const tempSecret = SECRET + adminExists.password;
 
-  // Verify provided token, function ends if token isn't valid
-  const validToken = jwt.verify(decodedToken, tempSecret);
+    // Verify provided token, function ends if token isn't valid
+    jwt.verify(decodedToken, tempSecret);
 
-  // End function if token is valid
-  if (!validToken) {
-    return res
-      .status(403)
-      .json({ msg: 'Authentication failed: Invalid token' });
+    // Hash the user provided password
+    const hashedPassword = await hashPasswordService(password);
+
+    // Proceed to update user password (hashed)
+    const updatePayload = {
+      email: adminExists.email,
+      password: hashedPassword,
+    };
+
+    // Only updates the user password
+    const resetUserPassword = await updateAdminService(updatePayload);
+
+    return res.status(204).json(resetUserPassword);
+  } catch (error) {
+    // End function if token is invalid
+    return res.status(403).json({ msg: error.message });
   }
-
-  // Hash the user provided password
-  const hashedPassword = await hashPasswordService(password);
-
-  // Proceed to update user password (hashed)
-  const updatePayload = {
-    email: adminExists.email,
-    password: hashedPassword,
-  };
-
-  // Only updates the user password
-  const resetUserPassword = await updateAdminService(updatePayload);
-
-  return res.status(204).json(resetUserPassword)
 };
