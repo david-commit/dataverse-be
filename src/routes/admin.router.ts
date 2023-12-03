@@ -13,6 +13,7 @@ import {
   createAdmin,
   updateAdmin,
   deleteAdmin,
+  countAdmins,
 } from '../controllers/adminController';
 
 // =================================================================
@@ -44,5 +45,10 @@ router.put('/create-admin/:adminID', updateAdmin);
 //        Delete: Existing Admin
 // =================================================================
 router.delete('/delete-admin/:adminID', deleteAdmin);
+
+// =================================================================
+//        GET: Count existing Admins
+// =================================================================
+router.get('/count-admins', countAdmins);
 
 module.exports = router;

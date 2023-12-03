@@ -13,6 +13,7 @@ import {
   createBlog,
   updateBlog,
   deleteBlog,
+  countBlogs,
 } from '../controllers/blogController';
 
 // =================================================================
@@ -39,5 +40,10 @@ router.put('/create-blog/:blogID', updateBlog);
 //        Delete: Existing Blog
 // =================================================================
 router.delete('/delete-blog/:blogID', deleteBlog);
+
+// =================================================================
+//        GET: Count existing Blogs
+// =================================================================
+router.get('/count-blogs', countBlogs);
 
 module.exports = router;
