@@ -106,3 +106,10 @@ export const deleteAdminService = async (adminID: number) => {
     },
   });
 };
+
+// =================================================================
+//        GET: Count existing Admin
+// =================================================================
+export const countAdminService = async () => {
+  return await db.admin.count();
+};
