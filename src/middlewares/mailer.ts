@@ -104,7 +104,7 @@ export const sendEmail = async (req: Request, res: Response) => {
     html: emailBody,
   };
 
-  transporter.sendMail(message, (error, info) => {
+  await transporter.sendMail(message, (error, info) => {
     if (error) {
       console.log(error);
     } else {

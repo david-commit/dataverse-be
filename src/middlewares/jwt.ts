@@ -67,7 +67,7 @@ export const verifyToken = async (
 };
 
 // =================================================================
-//        Function to verify the client token is valid (VALIDATION FOR FRONTEND rotected routes)
+//        Function to verify the client token is valid (VALIDATION FOR FRONTEND protected routes)
 // =================================================================
 export const confirmAuthentication = async (req: Request, res: Response) => {
   // Get accessToken cookie from request
