@@ -7,6 +7,7 @@ import {
 import { generateToken } from '../middlewares/jwt';
 import { hashPasswordService } from '../middlewares/bycrpt';
 import { getAdminService } from '../services/admin.services';
+import { sendEmail } from '../middlewares/mailer';
 const FRONTEND_URL = process.env.FRONTEND_URL;
 const SECRET = process.env.SECRET;
 
@@ -42,9 +43,15 @@ export const forgotPassword = async (req: Request, res: Response) => {
 
   // Form link to send to user via email
   const resetLink = `${FRONTEND_URL}/reset-password/${adminExists.id}/${encodedToken}`;
-  console.log(resetLink);
 
-  return res.status(200).json({ link: resetLink });
+  try {
+    sendEmail(req, res);
+
+    return res.status(200).json({ link: resetLink });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error });
+  }
 };
 
 // =================================================================
