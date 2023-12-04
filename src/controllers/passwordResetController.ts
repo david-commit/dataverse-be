@@ -45,7 +45,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
   const resetLink = `${FRONTEND_URL}/reset-password/${adminExists.id}/${encodedToken}`;
 
   try {
-    sendEmail(req, res);
+    sendEmail();
 
     return res.status(200).json({ link: resetLink });
   } catch (error) {

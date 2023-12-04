@@ -13,7 +13,8 @@ const jobRoutes = require('./src/routes/job.router');
 const blogRoutes = require('./src/routes/blog.router');
 const contactEntryRoutes = require('./src/routes/contactEntry.router');
 const loginRoute = require('./src/routes/login.router');
-const passwordRoutes = require('./src/routes/passwords.router')
+const passwordRoutes = require('./src/routes/passwords.router');
+const dashboardRoutes = require('./src/routes/dashboard.router');
 
 // ======== > ConfigsService
 const app = express();
@@ -47,6 +48,7 @@ app.use('/api', blogRoutes);
 app.use('/api', contactEntryRoutes);
 app.use('/api', loginRoute);
 app.use('/api', passwordRoutes);
+app.use('/api', dashboardRoutes);
 // app.use('/api', (req: Request, res: Response) => {
 //   res.status(200).json({ success: true });
 // });
