@@ -9,7 +9,6 @@ import {
   createAdminService,
   updateAdminService,
   deleteAdminService,
-  countAdminService,
 } from '../services/admin.services';
 
 // =================================================================
@@ -130,17 +129,4 @@ export const deleteAdmin = async (req: Request, res: Response) => {
     return res.status(500).json({ msg: 'Profile could not deleted' });
   }
   return res.status(204).json({ msg: 'Profile deleted successfully' });
-};
-
-// =================================================================
-//        GET: Count existing Admins
-// =================================================================
-export const countAdmins = async (req: Request, res: Response) => {
-  const admins = countAdminService();
-
-  if (!admins) {
-    return res.status(500).json({ msg: 'Server count error' });
-  }
-
-  return res.status(200).json(admins);
 };

@@ -115,9 +115,3 @@ export const deleteBlogService = async (blogID: number) => {
   });
 };
 
-// =================================================================
-//        GET: Count existing Blogs
-// =================================================================
-export const countBlogService = async () => {
-  return await db.blog.count();
-};

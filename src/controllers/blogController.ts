@@ -5,7 +5,6 @@ import {
   createBlogService,
   updateBlogService,
   deleteBlogService,
-  countBlogService,
 } from '../services/blog.services';
 
 // =================================================================
@@ -92,17 +91,4 @@ export const deleteBlog = async (req: Request, res: Response) => {
     return res.status(500).json({ msg: 'Insight blog could not be deleted' });
   }
   return res.status(204).json({ msg: 'Insight blog deleted successfully' });
-};
-
-// =================================================================
-//        GET: Count existing Blogs
-// =================================================================
-export const countBlogs = async (req: Request, res: Response) => {
-  const blogs = countBlogService();
-
-  if (!blogs) {
-    return res.status(500).json({ msg: 'Server count error' });
-  }
-
-  return res.status(200).json(blogs);
 };
