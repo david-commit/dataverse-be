@@ -51,6 +51,7 @@ model ContactEntry {
   email     String
   subject   String
   message   String
+  read      Boolean
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }

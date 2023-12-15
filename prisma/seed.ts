@@ -36,6 +36,7 @@ type ContactType = {
   email: string;
   subject: string;
   message: string;
+  read: string;
 };
 
 // ==== MAIN SEED FUNCTION ====
@@ -105,4 +106,5 @@ const seed = async () => {
   console.log('🌱 Contact form data successfully seeded!');
 };
 
+// ======== > Run the seeding function
 seed();
