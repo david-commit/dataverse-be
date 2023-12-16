@@ -38,6 +38,6 @@ router.delete('/delete-contact-entry/:contactEntryID', deleteContactEntry);
 // =================================================================
 //        PATCH: Update Existing Contact Entry Read Value
 // =================================================================
-router.patch('/update-contact-entry', updateReadContactEntry);
+router.patch('/update-contact-entry/:contactEntryID', updateReadContactEntry);
 
 module.exports = router;
