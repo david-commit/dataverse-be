@@ -74,3 +74,26 @@ export const deleteContactEntryService = async (contactEntryID: number) => {
     },
   });
 };
+
+// =================================================================
+//        UPDATE: Existing Contact Entry Read Boolean
+// =================================================================
+export const updateReadContactEntryService = async (contactEntryID: number) => {
+  const existingReadValue = db.contactEntry.findUnique({
+    where: {
+      id: contactEntryID,
+    },
+    select: {
+      read: true,
+    },
+  });
+
+  return await db.contactEntry.update({
+    where: {
+      id: contactEntryID,
+    },
+    data: {
+      read: !(await existingReadValue).read,
+    },
+  });
+};

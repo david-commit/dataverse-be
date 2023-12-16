@@ -36,7 +36,6 @@ type ContactType = {
   email: string;
   subject: string;
   message: string;
-  read: string;
 };
 
 // ==== MAIN SEED FUNCTION ====
