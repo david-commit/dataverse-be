@@ -4,6 +4,7 @@ import {
   getContactEntryService,
   createContactEntryService,
   deleteContactEntryService,
+  updateReadContactEntryService,
 } from '../services/contactEntry.services';
 
 // =================================================================
@@ -57,6 +58,7 @@ export const deleteContactEntry = async (req: Request, res: Response) => {
     parseInt(contactEntryID)
   );
 
+  // Send back error if it doesn't exist
   if (!contactEntryExists) {
     return res.status(404).json({ msg: 'Contact entry not found' });
   }
@@ -68,4 +70,29 @@ export const deleteContactEntry = async (req: Request, res: Response) => {
     return res.status(500).json({ msg: 'Contact entry could not be deleted' });
   }
   return res.status(204).json({ msg: 'Contact entry deleted successfully' });
+};
+
+// =================================================================
+//        UPDATE: Existing Contact Entry Read Value
+// =================================================================
+export const updateReadContactEntry = async (req: Request, res: Response) => {
+  const { contactEntryID } = req.params;
+
+  // Check if contact entry exists
+  const contactEntryExists = await getContactEntryService(
+    parseInt(contactEntryID)
+  );
+
+  // Send back error if it doesn't exist
+  if (!contactEntryExists) {
+    return res.status(404).json({ msg: 'Contact entry not found' });
+  }
+
+  // Proceed to update entry since it exists
+  const entry = await updateReadContactEntryService(parseInt(contactEntryID));
+
+  if (!entry) {
+    return res.status(500).json({ msg: 'Contact entry could not be updated' });
+  }
+  return res.status(204).json({ msg: 'Contact entry updated successfully' });
 };

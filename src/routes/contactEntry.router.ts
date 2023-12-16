@@ -12,6 +12,7 @@ import {
   getContactEntry,
   createContactEntry,
   deleteContactEntry,
+  updateReadContactEntry,
 } from '../controllers/contactEntryController';
 
 // =================================================================
@@ -33,5 +34,10 @@ router.post('/create-contact-entry', createContactEntry);
 //        Delete: Existing Contact Entry
 // =================================================================
 router.delete('/delete-contact-entry/:contactEntryID', deleteContactEntry);
+
+// =================================================================
+//        PATCH: Update Existing Contact Entry Read Value
+// =================================================================
+router.patch('/update-contact-entry', updateReadContactEntry);
 
 module.exports = router;
