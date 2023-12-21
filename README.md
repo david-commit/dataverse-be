@@ -56,5 +56,21 @@ Figma will be used to design the frames to represent the website. Links below:
 - [Presentation Mode](https://www.figma.com/proto/NN2scaWfPt9yefajzQWTXw/DataVerseKE?type=design&node-id=0-1&t=idrwN6e2rLwwZvLi-0&scaling=min-zoom&page-id=0%3A1)
 
 ## API Documentation
+
 The documentation will be cateorized into respective models.
-1. Admins
+
+1.  Admins
+     <ol type="i">
+        <li>CREATE ADMIN - POST</li>
+     </ol>
+
+           Request:
+
+           ```json
+           {  
+               "name": "John Doe",
+               "email": "user@example.com",
+               "phone": "071234578",
+               "password": "password"
+           }
+           ```
