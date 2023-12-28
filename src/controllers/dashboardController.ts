@@ -16,15 +16,15 @@ export const countAllModels = async (req: Request, res: Response) => {
   const countJobs = await countJobService();
 
   const responseCountPayload = {
-    admins: countAdmins,
-    blogs: countBlogs,
-    contactEntries: countContactEntries,
-    jobs: countJobs,
+    admins: { count: countAdmins, title: 'Admins' },
+    blogs: { count: countBlogs, title: 'Blogs' },
+    contactEntries: { count: countContactEntries, title: 'Contact Entries' },
+    jobs: { count: countJobs, title: 'Jobs' },
   };
 
   if (!responseCountPayload) {
     return res.status(500).json({ msg: 'Server count error' });
   }
 
-  return res.status(200).json(responseCountPayload)
+  return res.status(200).json(responseCountPayload);
 };

@@ -8,6 +8,7 @@ export const getAllAdminsService = async () => {
   return await db.admin.findMany({
     select: {
       id: true,
+      name: true,
       email: true,
       phone: true,
     },
