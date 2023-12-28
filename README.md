@@ -22,7 +22,7 @@ To set up the backend service on your local machine, follow the following steps:
     <li>DATABASE_URL variable which must be <code>DATABASE_URL='file:./dev.db'</code></li>
     <li>SECRET variable eg <code>SECRET=ilovechapobeans</code></li>
     <li>FRONTEND_URL variable eg <code>FRONTEND_URL=http://localhost:5174</code>(vite development link)</li>
-    <li>NODE_ENV variable eg <code>NODE_ENV=production</code> or <code>ENV=development</code></li>
+    <li>NODE_ENV variable eg <code>NODE_ENV=production</code> or <code>NODE_ENV=development</code></li>
     <h4>Optional Variables</h4>
     The EMAIL and EMAIL_PASSWORD are necessary if you want to utilize the mailing module
     <li><code>EMAIL=example@gmail.com</code></li>

@@ -40,3 +40,16 @@ export const loginController = async (req: Request, res: Response) => {
 
   return res.status(200).json(profile);
 };
+
+// =================================================================
+//        POST: LOGOUT (Destroy provided cookie)
+// =================================================================
+export const logoutController = async (req: Request, res: Response) => {
+  try {
+    // 1. Invalidate Session or Clear Authentication Data
+    res.status(202).clearCookie('accessToken')
+  } catch (error) {
+    console.error('Logout error:', error);
+    res.status(500).send('Error logging out');
+  }
+};

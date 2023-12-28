@@ -7,7 +7,7 @@ const router = express.Router();
 // =================================================================
 //        IMPORT: Admin Login Controller
 // =================================================================
-import { loginController } from '../controllers/loginController';
+import { loginController, logoutController } from '../controllers/loginController';
 import { confirmAuthentication } from '../middlewares/jwt';
 
 // =================================================================
@@ -19,5 +19,10 @@ router.post('/admin-login', loginController);
 //        POST: Verify user token
 // =================================================================
 router.post('/auth/me', confirmAuthentication);
+
+// =================================================================
+//        POST: Logout
+// =================================================================
+router.post('/admin-logout', logoutController);
 
 module.exports = router;
