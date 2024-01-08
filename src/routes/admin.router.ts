@@ -19,16 +19,17 @@ import {
 //        IMPORT: Mddleware validators
 // =================================================================
 import { signupValidator } from '../validators/authValidators';
+import { verifyToken } from '../middlewares/jwt';
 
 // =================================================================
 //        GET: All Admins
 // =================================================================
-router.get('/get-admins', getAllAdmins);
+router.get('/get-admins', verifyToken, getAllAdmins);
 
 // =================================================================
 //        GET: Single Admin
 // =================================================================
-router.get('/get-admins/:adminID', getAdmin);
+router.get('/get-admins/:adminID', verifyToken, getAdmin);
 
 // =================================================================
 //        POST: New Admin
@@ -38,7 +39,7 @@ router.post('/create-admin', signupValidator, createAdmin);
 // =================================================================
 //        UPDATE: Existing Admin
 // =================================================================
-router.put('/create-admin/:adminID', updateAdmin);
+router.patch('/update-admin/:adminID', verifyToken, updateAdmin);
 
 // =================================================================
 //        Delete: Existing Admin

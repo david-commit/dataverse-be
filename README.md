@@ -23,10 +23,10 @@ To set up the backend service on your local machine, follow the following steps:
     <li>SECRET variable eg <code>SECRET=ilovechapobeans</code></li>
     <li>FRONTEND_URL variable eg <code>FRONTEND_URL=http://localhost:5174</code>(vite development link)</li>
     <li>NODE_ENV variable eg <code>NODE_ENV=production</code> or <code>NODE_ENV=development</code></li>
-    <h4>Optional Variables</h4>
-    The EMAIL and EMAIL_PASSWORD are necessary if you want to utilize the mailing module
+   <h4>Optional Variables</h4>
     <li><code>EMAIL=example@gmail.com</code></li>
     <li><code>EMAIL_PASSWORD=xxxx xxxx xxxx xxxx</code></li>
+    The EMAIL and EMAIL_PASSWORD are necessary if you want to utilize the mailing module such as the reset password and contact form features
    </ol>
 4. After the variables are loaded, run: `npx prisma db push` to build the database from the schema.
 5. Next, run: `npx prisma db seed` to seed the database.
@@ -57,20 +57,31 @@ Figma will be used to design the frames to represent the website. Links below:
 
 ## API Documentation
 
-The documentation will be cateorized into respective models.
+The documentation will be cateorized into respective models. The backend of this application is built primarily in Node and ExpressJS for the server. These are some of the available routes:
 
-1.  Admins
-     <ol type="i">
-        <li>CREATE ADMIN - POST</li>
-     </ol>
+### ADMINS
 
-           Request:
+1. GET ALL ADMINS (Authenticated)
 
-           ```json
-           {  
-               "name": "John Doe",
-               "email": "user@example.com",
-               "phone": "071234578",
-               "password": "password"
-           }
-           ```
+   GET: `/api/get-admins`
+
+   - A valid token must be provided
+
+   Response:
+
+   ```json
+   [
+     {
+       "id": 1,
+       "name": "Faith Brown",
+       "email": "faith@example.com",
+       "phone": "0712345678"
+     },
+     {
+       "id": 2,
+       "name": "Lynette White",
+       "email": "lynette@example.com",
+       "phone": "0712345678"
+     }
+   ]
+   ```
