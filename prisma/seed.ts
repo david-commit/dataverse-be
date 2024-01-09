@@ -1,4 +1,5 @@
 import { db } from '../src/utils/db.server';
+import { hashPasswordService } from '../src/middlewares/bycrpt';
 import {
   testAdminData,
   testCareerData,
@@ -42,12 +43,16 @@ type ContactType = {
 const seed = async () => {
   //======== > Seed Admins
   await Promise.all(
-    testAdminData.map((admin: AdminType) => {
+    testAdminData.map(async (admin: AdminType) => {
+      // Hash plain password
+      const hashedPassword = await hashPasswordService(admin.password);
+
+      // Update profile with the hashed password
       return db.admin.create({
         data: {
           name: admin.name,
           email: admin.email,
-          password: admin.password,
+          password: hashedPassword,
           phone: admin.phone,
         },
       });
