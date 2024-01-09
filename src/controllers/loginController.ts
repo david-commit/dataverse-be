@@ -34,6 +34,7 @@ export const loginController = async (req: Request, res: Response) => {
   // Extract data to send back to client
   const profile = {
     id: adminExists.id,
+    name: adminExists.name,
     email: adminExists.email,
     phone: adminExists.phone,
   };
@@ -47,7 +48,7 @@ export const loginController = async (req: Request, res: Response) => {
 export const logoutController = async (req: Request, res: Response) => {
   try {
     // 1. Invalidate Session or Clear Authentication Data
-    res.status(202).clearCookie('accessToken')
+    res.status(202).clearCookie('accessToken');
   } catch (error) {
     console.error('Logout error:', error);
     res.status(500).send('Error logging out');

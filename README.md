@@ -59,6 +59,72 @@ Figma will be used to design the frames to represent the website. Links below:
 
 The documentation will be cateorized into respective models. The backend of this application is built primarily in Node and ExpressJS for the server. These are some of the available routes:
 
+### AUTHENTICATION
+
+1. ADMIN LOGIN
+
+   POST: `/api/admin-login`
+
+   Request:
+
+   ```json
+   {
+     "email": "walter@brown.com",
+     "password": "Password"
+   }
+   ```
+
+   Response:
+
+   ```json
+   {
+     "id": 5,
+     "name": "Walter Brown",
+     "email": "walter@brown.com",
+     "phone": "0112345678"
+   }
+   ```
+
+2. VERIFY TOKEN
+
+   POST: `/api/auth/me`
+
+   Request:
+
+   - Access token provded via the request headers
+
+   Response if valid token is provided:
+
+   ```json
+   {
+     "msg": "Authorized"
+   }
+   ```
+
+   Response if invalid or no token is provided:
+
+   ```json
+   {
+     "msg": "Authentication failed: No token provided"
+   }
+   ```
+
+3. ADMIN LOGOUT
+
+   POST: `/api/admin-logout`
+
+   Request:
+
+   - Access token provded via the request headers
+
+   Response:
+
+   ```json
+   {
+     "msg": "Logged out successfully"
+   }
+   ```
+
 ### ADMINS
 
 1. GET ALL ADMINS (Authenticated)

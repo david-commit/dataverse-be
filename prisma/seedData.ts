@@ -17,6 +17,12 @@ export const testAdminData = [
     password: 'password',
     phone: '0712345678',
   },
+  {
+    name: 'Walter Brown',
+    email: 'walter@brown.com',
+    password: 'Password',
+    phone: '0712345678',
+  },
 ];
 
 export const testCareerData = [
