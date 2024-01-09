@@ -44,6 +44,6 @@ router.patch('/update-admin/:adminID', verifyToken, updateAdmin);
 // =================================================================
 //        Delete: Existing Admin
 // =================================================================
-router.delete('/delete-admin/:adminID', deleteAdmin);
+router.delete('/delete-admin/:adminID', verifyToken, deleteAdmin);
 
 module.exports = router;

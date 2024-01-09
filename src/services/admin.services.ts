@@ -1,5 +1,4 @@
 import { db } from '../utils/db.server';
-import { Request, Response } from 'express';
 
 // =================================================================
 //        GET: All Admins
@@ -27,6 +26,7 @@ export const getAdminService = async (adminID: number) => {
       id: true,
       email: true,
       phone: true,
+      name: true,
       password: true,
     },
   });
@@ -44,6 +44,7 @@ export const getAdminServiceByEmail = async (adminEmail: string) => {
       id: true,
       email: true,
       phone: true,
+      name: true,
       password: true,
     },
   });

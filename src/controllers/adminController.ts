@@ -34,7 +34,15 @@ export const getAdmin = async (req: Request, res: Response) => {
   if (!admin) {
     return res.status(404).json({ msg: 'User not found' });
   }
-  return res.status(200).json(admin);
+
+  const adminPayload = {
+    id: admin.id,
+    name: admin.name,
+    email: admin.email,
+    phone: admin.phone,
+  };
+
+  return res.status(200).json(adminPayload);
 };
 
 // =================================================================
@@ -74,14 +82,14 @@ export const createAdmin = async (req: Request, res: Response) => {
   const tokenPayload = { id: admin.id, email: admin.email };
   generateTokenAndSetCookies(tokenPayload, res);
 
-  return res.status(201).json({
-    payload: {
-      id: admin.id,
-      name: admin.name,
-      email: admin.email,
-      phone: admin.phone,
-    },
-  });
+  const adminPayload = {
+    id: admin.id,
+    name: admin.name,
+    email: admin.email,
+    phone: admin.phone,
+  };
+
+  return res.status(201).json(adminPayload);
 };
 
 // =================================================================
@@ -105,7 +113,15 @@ export const updateAdmin = async (req: Request, res: Response) => {
   if (!admin) {
     return res.status(422).json({ msg: 'Unprocessable entity' });
   }
-  return res.status(202).json(admin);
+
+  const updatedAdmin = {
+    id: admin.id,
+    name: admin.name,
+    email: admin.email,
+    phone: admin.phone,
+  };
+
+  return res.status(202).json(updatedAdmin);
 };
 
 // =================================================================
@@ -119,7 +135,7 @@ export const deleteAdmin = async (req: Request, res: Response) => {
 
   // End function if admin doesn't exist
   if (!adminExists) {
-    return res.status(403).json({ msg: 'Forbidden action' });
+    return res.status(403).json({ msg: 'User not found' });
   }
 
   // Proceed deleting since admin exists

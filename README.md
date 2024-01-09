@@ -85,3 +85,84 @@ The documentation will be cateorized into respective models. The backend of this
      }
    ]
    ```
+
+2. GET SINGLE ADMIN (Authenticated)
+
+   GET: `/api/get-admins/:adminID`
+
+   - A valid token must be provided
+
+   Response:
+
+   ```json
+   {
+     "id": 5,
+     "email": "walter@brown.com",
+     "phone": "0112345678"
+   }
+   ```
+
+3. CREATE NEW ADMIN
+
+   POST: `/api/create-admin`
+
+   Request:
+
+   ```json
+   {
+     "name": "Walter Brown",
+     "email": "walterrr@brown.com",
+     "password": "Password",
+     "phone": "0712345678"
+   }
+   ```
+
+   Response:
+
+   ```json
+   {
+     "id": 7,
+     "name": "Walter Brown",
+     "email": "walterrr@brown.com",
+     "phone": "0712345678"
+   }
+   ```
+
+4. UPDATE AN EXISTING ADMIN
+
+   PATCH: `/api/update-admin/:adminID`
+
+   Request:
+
+   - A valid token must be provided via the request headers
+   - An email must be provided via the request body and cannot be changed
+
+   ```json
+   {
+     "email": "walterr@brown.com",
+     "phone": "0112345678"
+   }
+   ```
+
+   Response:
+
+   ```json
+   {
+     "id": 7,
+     "name": "Walter Brown",
+     "email": "walterr@brown.com",
+     "phone": "0112345678"
+   }
+   ```
+
+5. DELETE AN EXISTING ADMIN
+
+   POST: `/api/delete-admin/:adminID`
+
+   Request:
+
+   - A valid token must be provided via the request headers
+
+   Response:
+
+   - 204 No Content status code
