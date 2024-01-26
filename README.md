@@ -232,3 +232,8 @@ The documentation will be cateorized into respective models. The backend of this
    Response:
 
    - 204 No Content status code
+
+
+# TODO:
+- Add published boolean status to job posts
+- Add application deadline, modified date
