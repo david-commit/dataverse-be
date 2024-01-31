@@ -28,6 +28,8 @@ model Job {
   job_details     String
   slug            String   @unique
   postedBy        String
+  published       String
+  deadline        DateTime
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
