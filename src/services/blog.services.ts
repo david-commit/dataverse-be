@@ -20,10 +20,10 @@ export const getAllBlogsService = async () => {
 // =================================================================
 //        GET: Single Blog
 // =================================================================
-export const getBlogService = async (blogID: number) => {
+export const getBlogService = async (blogID: string) => {
   return await db.blog.findUnique({
     where: {
-      id: blogID,
+      slug: blogID,
     },
     select: {
       id: true,

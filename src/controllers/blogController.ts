@@ -25,7 +25,7 @@ export const getAllBlogs = async (req: Request, res: Response) => {
 export const getBlog = async (req: Request, res: Response) => {
   const { blogID } = req.params;
 
-  const blog = await getBlogService(parseInt(blogID));
+  const blog = await getBlogService(blogID);
 
   if (!blog) {
     return res.status(404).json({ msg: 'Blog does not exist' });
@@ -56,7 +56,7 @@ export const updateBlog = async (req: Request, res: Response) => {
   const blogRole = req.body;
 
   // Check if blog exists
-  const blogExists = await getBlogService(parseInt(blogID));
+  const blogExists = await getBlogService(blogID);
 
   if (!blogExists) {
     return res.status(404).json({ msg: 'Blog not found' });
@@ -78,7 +78,7 @@ export const deleteBlog = async (req: Request, res: Response) => {
   const { blogID } = req.params;
 
   // Check if blog exists
-  const blogExists = await getBlogService(parseInt(blogID));
+  const blogExists = await getBlogService(blogID);
 
   if (!blogExists) {
     return res.status(404).json({ msg: 'Blog not found' });
