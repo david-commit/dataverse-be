@@ -9,6 +9,7 @@ const router = express.Router();
 // =================================================================
 import {
   getAllBlogs,
+  getRecentBlogs,
   getBlog,
   createBlog,
   updateBlog,
@@ -19,6 +20,11 @@ import {
 //        GET: All Blogs
 // =================================================================
 router.get('/get-blogs', getAllBlogs);
+
+// =================================================================
+//        GET: Recent Blogs
+// =================================================================
+router.get('/get-recent-blogs', getRecentBlogs);
 
 // =================================================================
 //        GET: Single Blogs

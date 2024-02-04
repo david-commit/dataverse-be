@@ -1,4 +1,5 @@
 import type { Request, Response } from 'express';
+import moment from 'moment';
 import {
   getAllBlogsService,
   getBlogService,
@@ -17,6 +18,25 @@ export const getAllBlogs = async (req: Request, res: Response) => {
     return res.status(404).json({ msg: 'No blogs found' });
   }
   return res.status(200).json(blogs);
+};
+
+// =================================================================
+//        GET: Recent Blogs
+// =================================================================
+export const getRecentBlogs = async (req: Request, res: Response) => {
+  const blogs = await getAllBlogsService();
+
+  if (!blogs) {
+    return res.status(404).json({ msg: 'No blogs found' });
+  }
+
+  const sortedBlogs = blogs.sort(
+    (a, b) => moment(b.createdAt).valueOf() - moment(a.createdAt).valueOf()
+  );
+
+  // Return only the first three blogs (latest)
+  const recentBlogs = sortedBlogs.slice(0, 3);
+  return res.status(200).json(recentBlogs);
 };
 
 // =================================================================
