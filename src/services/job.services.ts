@@ -46,10 +46,20 @@ type NewJobType = {
   job_details: string;
   slug: string;
   postedBy: string;
+  published: boolean;
+  deadline: Date;
 };
 
 export const createJobService = async (jobRole: NewJobType) => {
-  const { job_title, job_description, job_details, slug, postedBy } = jobRole;
+  const {
+    job_title,
+    job_description,
+    job_details,
+    slug,
+    postedBy,
+    published,
+    deadline,
+  } = jobRole;
 
   return await db.job.create({
     data: {
@@ -58,6 +68,8 @@ export const createJobService = async (jobRole: NewJobType) => {
       job_details,
       slug,
       postedBy,
+      published,
+      deadline,
     },
   });
 };
