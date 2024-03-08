@@ -32,6 +32,8 @@ export const testCareerData = [
     job_details: 'HTML code here',
     slug: 'system-administaror',
     postedBy: 'David',
+    published: true,
+    deadline: '22/03/2024',
   },
   {
     job_title: 'Systems Analyst',
@@ -39,6 +41,8 @@ export const testCareerData = [
     job_details: 'HTML code here',
     slug: 'system-analyst',
     postedBy: 'Lynette',
+    published: true,
+    deadline: '22/03/2024',
   },
   {
     job_title: 'Data Analyst',
@@ -46,6 +50,8 @@ export const testCareerData = [
     job_details: 'HTML code here',
     slug: 'data-analyst',
     postedBy: 'Faith',
+    published: true,
+    deadline: '22/03/2024',
   },
 ];
 

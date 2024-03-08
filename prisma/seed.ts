@@ -20,6 +20,8 @@ type JobType = {
   job_details: string;
   slug: string;
   postedBy: string;
+  published: boolean;
+  deadline: string;
 };
 
 type BlogType = {
@@ -70,6 +72,8 @@ const seed = async () => {
           job_details: job.job_details,
           slug: job.slug,
           postedBy: job.postedBy,
+          published: job.published,
+          deadline: job.deadline,
         },
       });
     })

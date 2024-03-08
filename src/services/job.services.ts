@@ -47,7 +47,7 @@ type NewJobType = {
   slug: string;
   postedBy: string;
   published: boolean;
-  deadline: Date;
+  deadline: string;
 };
 
 export const createJobService = async (jobRole: NewJobType) => {

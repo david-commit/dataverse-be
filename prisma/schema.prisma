@@ -29,7 +29,7 @@ model Job {
   slug            String   @unique
   postedBy        String
   published       Boolean
-  deadline        DateTime
+  deadline        String
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 }
